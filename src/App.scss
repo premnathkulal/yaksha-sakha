@@ -1,0 +1,17 @@
+#root {
+  // padding: 2rem;
+  text-align: center;
+  width: 100%;
+  height: calc(100vh - 0px);
+  background-color: #28282b;
+  color: #ffffff;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
