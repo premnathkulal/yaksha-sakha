@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Shruthi from "../pages/shruthi.tsx";
+import Shruthi from "../pages/Shruthi.tsx";
 import Tala from "../pages/tala.tsx";
 
 const appRouter = createBrowserRouter([

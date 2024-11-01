@@ -1,0 +1,29 @@
+.shruthi-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .shruthi-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4d4d53;
+    padding: 2px;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 6px;
+
+    .shruthi-card-icon {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  .shruthi-name {
+    line-height: 0.8rem;
+    padding-top: 0.5rem;
+    font-size: 0.7rem;
+    width: 46px;
+  }
+}

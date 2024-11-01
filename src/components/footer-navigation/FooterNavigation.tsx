@@ -4,11 +4,11 @@ import {
   WaveFormIcon,
   ChendeIcon,
   MusicList,
-} from "../utils/assets";
+} from "../../utils/assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
-function FooterNavigation() {
+const FooterNavigation = () => {
   return (
     <div className="app-footer">
       <div className="menu selected">
@@ -28,6 +28,6 @@ function FooterNavigation() {
       </div>
     </div>
   );
-}
+};
 
 export default FooterNavigation;

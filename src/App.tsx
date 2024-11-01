@@ -1,6 +1,6 @@
 import "./App.scss";
 import { Outlet } from "react-router-dom";
-import FooterNavigation from "./components/FooterNavigation";
+import FooterNavigation from "./components/footer-navigation/FooterNavigation";
 
 function App() {
   return (

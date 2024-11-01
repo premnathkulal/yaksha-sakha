@@ -1,0 +1,29 @@
+.shruthi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+  .player-animation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .player-placeholder {
+      width: 8rem;
+      height: 8rem;
+      position: absolute;
+      background: #28282b;
+      border-radius: 50%;
+    }
+  }
+
+  .shruthi-cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 65%;
+  }
+}
