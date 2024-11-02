@@ -1,18 +1,18 @@
 export const TanpuraTypes = [
   {
-    key: "yaksha-shruthi-1",
-    title: "Yaksha Shruthi low",
+    key: "yaksha-low",
+    title: "Yaksha low",
   },
   {
-    key: "yaksha-shruthi-2",
-    title: "Yaksha Shruthi high",
+    key: "yaksha-high",
+    title: "Yaksha high",
   },
   {
-    key: "traditional-pa",
+    key: "tanpura-pa",
     title: "Tanpura PA",
   },
   {
-    key: "traditional-ma",
+    key: "tanpura-ma",
     title: "Tanpura MA",
   },
 ];

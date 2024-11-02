@@ -18,12 +18,16 @@
       height: 3rem;
       width: 3rem;
     }
+
+    &:hover {
+      background: #4d4d5370;
+    }
   }
 
   .shruthi-name {
-    line-height: 0.8rem;
+    line-height: 14px;
     padding-top: 0.5rem;
     font-size: 0.7rem;
-    width: 46px;
+    width: 62px;
   }
 }

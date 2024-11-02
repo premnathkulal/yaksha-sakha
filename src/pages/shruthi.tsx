@@ -12,10 +12,13 @@ const shruthi = () => {
         <img src={YakshaMan} alt="img" className="player-placeholder" />
       </div>
       <div className="shruthi-cards">
-        <ShruthiCard />
-        <ShruthiCard />
-        <ShruthiCard />
-        <ShruthiCard />
+        {TanpuraTypes.map((data) => (
+          <ShruthiCard
+            key={data.key}
+            tanpuraKey={data.key}
+            title={data.title}
+          />
+        ))}
       </div>
     </div>
   );
