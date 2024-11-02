@@ -5,9 +5,12 @@ import ShruthiSelector from "../components/shruthi-selector/ShruthiSelector";
 import { YakshaMan } from "../utils/assets";
 import { TanpuraTypes } from "../constants/UiData";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 const shruthi = () => {
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
+  const [playTanpura, setPlayTanpura] = useState(false);
 
   return (
     <div className="shruthi">
@@ -28,6 +31,15 @@ const shruthi = () => {
       </div>
       <div className="shruthi-selector">
         <ShruthiSelector />
+      </div>
+      <div
+        className="shruthi-controller"
+        onClick={() => setPlayTanpura(!playTanpura)}
+      >
+        <FontAwesomeIcon
+          icon={playTanpura ? faPause : faPlay}
+          className={!playTanpura ? "play-icon" : ""}
+        />
       </div>
     </div>
   );

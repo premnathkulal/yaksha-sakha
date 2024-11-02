@@ -79,7 +79,7 @@ const ShruthiSelector = () => {
   };
 
   const animationName = () => {
-    if (clickedLeft) return "fade-left";
+    if (!clickedLeft) return "fade-left";
     else return "fade-right";
   };
 

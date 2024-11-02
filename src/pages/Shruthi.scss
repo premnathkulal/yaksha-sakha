@@ -30,4 +30,19 @@
   .shruthi-selector {
     padding: 1rem 0;
   }
+
+  .shruthi-controller {
+    background: #444447;
+    font-size: 2rem;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .play-icon {
+      padding-left: 0.3rem;
+    }
+  }
 }
