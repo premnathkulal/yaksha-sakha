@@ -1,0 +1,77 @@
+.shruthi-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .shruthi-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .shruthi-option {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .current {
+      padding: 0 1.5rem;
+    }
+
+    .fade-left {
+      animation: 0.4s fade-left-animation;
+    }
+
+    .fade-right {
+      animation: 0.4s fade-right-animation;
+    }
+
+    .prev,
+    .next {
+      font-size: 1.5rem;
+      opacity: 0.5;
+    }
+
+    .hide-option {
+      visibility: hidden;
+    }
+  }
+
+  .shruthi-control-btn {
+    .btn-control-icon {
+      font-size: 2.5rem;
+      padding: 0 1rem;
+    }
+  }
+
+  .prev-btn {
+    margin-right: auto;
+  }
+
+  .next-btn {
+    margin-left: auto;
+  }
+
+  .disable-btn {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+@keyframes fade-left-animation {
+  0% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-right-animation {
+  0% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

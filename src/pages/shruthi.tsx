@@ -1,8 +1,9 @@
 import "./Shruthi.scss";
 import CircleWave from "../components/circle-wave/CircleWave";
 import ShruthiCard from "../components/shruthi-card/ShruthiCard";
+import ShruthiSelector from "../components/shruthi-selector/ShruthiSelector";
 import { YakshaMan } from "../utils/assets";
-import { MusicNotation, TanpuraTypes } from "../constants/UiData";
+import { TanpuraTypes } from "../constants/UiData";
 import { useState } from "react";
 
 const shruthi = () => {
@@ -24,6 +25,9 @@ const shruthi = () => {
             selectTanpura={() => setSelectedTanpura(data.key)}
           />
         ))}
+      </div>
+      <div className="shruthi-selector">
+        <ShruthiSelector />
       </div>
     </div>
   );
