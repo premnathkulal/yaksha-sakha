@@ -3,8 +3,11 @@ import CircleWave from "../components/circle-wave/CircleWave";
 import ShruthiCard from "../components/shruthi-card/ShruthiCard";
 import { YakshaMan } from "../utils/assets";
 import { MusicNotation, TanpuraTypes } from "../constants/UiData";
+import { useState } from "react";
 
 const shruthi = () => {
+  const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
+
   return (
     <div className="shruthi">
       <div className="player-animation">
@@ -17,6 +20,8 @@ const shruthi = () => {
             key={data.key}
             tanpuraKey={data.key}
             title={data.title}
+            isSelected={selectedTanpura === data.key}
+            selectTanpura={() => setSelectedTanpura(data.key)}
           />
         ))}
       </div>
