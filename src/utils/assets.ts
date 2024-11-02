@@ -5,6 +5,7 @@ import TanpuraIcon from "../assets/png/tanpura-icon.png";
 import WaveFormIcon from "../assets/png/wave-form-icon.png";
 import ChendeIcon from "../assets/png/chende-icon.png";
 import MusicList from "../assets/png/music-list.png";
+import JagateIcon from "../assets/png/jagate-icon.png";
 
 export {
   Tanpura,
@@ -14,4 +15,5 @@ export {
   WaveFormIcon,
   ChendeIcon,
   MusicList,
+  JagateIcon,
 };

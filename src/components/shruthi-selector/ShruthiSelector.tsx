@@ -106,6 +106,7 @@ const ShruthiSelector = () => {
           onAnimationEnd={() => setFadeAnimation(false)}
         >
           {activeItem.kannadaNotation}
+          <div className="wester-notation"> {activeItem.western}</div>
         </div>
         <div
           className={`shruthi-option next ${reachedEnd ? "hide-option" : ""}`}

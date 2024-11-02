@@ -1,13 +1,11 @@
 #root {
-  // padding: 2rem;
   text-align: center;
   width: 100%;
-  // height: calc(100vh - 0px);
   color: #ffffff;
 }
 
 .app {
-  height: 100%;
+  height: calc(100vh - 108px);
   width: 100%;
   display: flex;
   align-items: center;

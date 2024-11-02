@@ -127,3 +127,39 @@ export const MusicNotation = [
     frequency: 493.88,
   },
 ];
+
+export const TalaInfo = [
+  {
+    id: "tala-eka",
+    talaStructure: [2, 1, 1],
+    talaRepresentation: ["ತಕ-ಧಿಮಿ", "ತಕ", "ಜನು"],
+    talaCounts: 4,
+    talaName: "ಏಕ ತಾಳ",
+  },
+  {
+    id: "tala-jampe",
+    talaStructure: [2, 1, 1, 2, 1, 1, 1, 1],
+    talaRepresentation: ["ತಾಂ", "ತ", "ತ್ತ", "ತಾಂ", "ತ", "ತ್ತ", "ತ", "ತ್ತ"],
+    talaCounts: 10,
+    talaName: "ಜಂಪೆ ತಾಳ",
+  },
+  {
+    id: "tala-trivude",
+    talaStructure: [2, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1],
+    talaRepresentation: [
+      "ತಾಂ",
+      "ತ",
+      "ತ್ತ",
+      "ತ",
+      "ತ್ತ",
+      "ತಾಂ",
+      "ತ",
+      "ತ್ತ",
+      "ತಾಂ",
+      "ತ",
+      "ತ್ತ",
+    ],
+    talaCounts: 14,
+    talaName: "ತ್ರಿವುಡೆ ತಾಳ",
+  },
+];

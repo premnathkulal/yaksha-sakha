@@ -28,21 +28,47 @@
   }
 
   .shruthi-selector {
-    padding: 1rem 0;
+    padding-top: 0.8rem;
   }
 
-  .shruthi-controller {
-    background: #444447;
-    font-size: 2rem;
-    border-radius: 50%;
-    height: 4rem;
-    width: 4rem;
+  .shruthi-controller-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    width: 100%;
 
-    .play-icon {
-      padding-left: 0.3rem;
+    .shruthi-controller {
+      background: #444447;
+      font-size: 2rem;
+      border-radius: 8px;
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .instrument-icon {
+        width: 2rem;
+      }
+
+      .tanpura-icon {
+        transform: rotate(-45deg);
+      }
+
+      .tala-icon {
+        filter: brightness(0) invert(1);
+        transform: rotate(45deg);
+        padding-left: 0.3rem;
+      }
+
+      .chende-icon {
+        transform: rotate(-30deg);
+      }
+    }
+
+    .selected {
+      background: #a59f9f;
     }
   }
 }
