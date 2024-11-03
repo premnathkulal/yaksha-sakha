@@ -18,13 +18,20 @@
       background: #28282b;
       border-radius: 50%;
     }
+
+    @media screen and (max-height: 700px) {
+      .player-placeholder {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
   }
 
   .shruthi-cards {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 65%;
+    justify-content: center;
+    width: 100%;
   }
 
   .shruthi-selector {
@@ -47,6 +54,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      border: 1px solid #000;
 
       .instrument-icon {
         width: 2rem;
@@ -69,6 +77,19 @@
 
     .selected {
       background: #a59f9f;
+    }
+  }
+
+  @media screen and (max-height: 700px) {
+    .shruthi-controller-container {
+      .shruthi-controller {
+        height: 2rem;
+        width: 2rem;
+
+        .instrument-icon {
+          width: 1rem;
+        }
+      }
     }
   }
 }

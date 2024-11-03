@@ -2,6 +2,10 @@
   width: 100%;
   padding-bottom: 2rem;
 
+  @media screen and (max-height: 700px) {
+    padding-bottom: 0.5rem;
+  }
+
   .tala-maatra {
     display: flex;
     padding: 2rem 1rem;
@@ -24,6 +28,11 @@
     padding: 1rem;
     font-size: 1.5rem;
 
+    @media screen and (max-height: 700px) {
+      font-size: 1rem;
+      padding: 0.6rem;
+    }
+
     .tala-count {
       font-size: 1rem;
     }
@@ -40,6 +49,11 @@
     border-left: unset;
     font-weight: 600;
     font-size: 1rem;
+
+    @media screen and (max-height: 700px) {
+      font-size: 0.8rem;
+      height: 1.6rem;
+    }
 
     &:first-child {
       border-left: 2px solid black;

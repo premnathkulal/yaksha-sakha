@@ -20,6 +20,18 @@
     }
   }
 
+  @media screen and (max-height: 700px) {
+    .shruthi-card {
+      height: 2rem;
+      width: 2rem;
+
+      .shruthi-card-icon {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+  }
+
   .selected {
     background: #4d4d5370;
   }
@@ -29,5 +41,11 @@
     padding-top: 0.5rem;
     font-size: 0.7rem;
     width: 62px;
+  }
+
+  @media screen and (max-height: 700px) {
+    .shruthi-name {
+      font-size: 0.5rem;
+    }
   }
 }

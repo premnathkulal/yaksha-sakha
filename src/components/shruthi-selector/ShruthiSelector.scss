@@ -16,6 +16,14 @@
       .wester-notation {
         font-size: 1rem;
       }
+
+      @media screen and (max-height: 700px) {
+        font-size: 1.2rem;
+
+        .wester-notation {
+          font-size: 0.8rem;
+        }
+      }
     }
 
     .current {
@@ -34,6 +42,10 @@
     .next {
       font-size: 1.4rem;
       opacity: 0.5;
+
+      @media screen and (max-height: 700px) {
+        font-size: 1rem;
+      }
     }
 
     .hide-option {
@@ -45,6 +57,10 @@
     .btn-control-icon {
       font-size: 2rem;
       padding: 0 1rem;
+
+      @media screen and (max-height: 700px) {
+        font-size: 1.2rem;
+      }
     }
   }
 

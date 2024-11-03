@@ -4,6 +4,11 @@
     width: 17rem;
     position: relative;
 
+    @media screen and (max-height: 700px) {
+      height: 10rem;
+      width: 10rem;
+    }
+
     > div {
       animation: growAndFade 3s infinite ease-out;
       background-color: rgb(234, 238, 242);
