@@ -1,16 +1,16 @@
 import "./Shruthi.scss";
-import CircleWave from "../components/circle-wave/CircleWave";
-import ShruthiCard from "../components/shruthi-card/ShruthiCard";
-import ShruthiSelector from "../components/shruthi-selector/ShruthiSelector";
+import CircleWave from "../../components/circle-wave/CircleWave";
+import ShruthiCard from "../../components/shruthi-card/ShruthiCard";
+import ShruthiSelector from "../../components/shruthi-selector/ShruthiSelector";
 import {
   ChendeIcon,
   TanpuraIcon,
   YakshaMan,
   JagateIcon,
-} from "../utils/assets";
-import { TanpuraTypes } from "../constants/UiData";
+} from "../../utils/assets";
+import { TanpuraTypes } from "../../constants/UiData";
 import { useState } from "react";
-import TalaShortInfo from "../components/tala-short-info/TalaShortInfo";
+import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
 
 const shruthi = () => {
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
