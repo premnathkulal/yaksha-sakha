@@ -9,11 +9,12 @@ import {
   JagateIcon,
 } from "../../utils/assets";
 import { TanpuraTypes } from "../../constants/UiData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/app-store";
-import { selectTanpura } from "../../store/slices/selection-slice";
+import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
+import * as Tone from "tone";
 
 const shruthi = () => {
   const selectedTanpuraType = useSelector<RootState>(
@@ -22,14 +23,65 @@ const shruthi = () => {
   const dispatch = useDispatch();
 
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
-  const [tanpuraSelected, setTanpuraSelected] = useState(false);
+  const [selectedPitch, setSelectedPitch] = useState("C");
+  const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
+  const [isPlaying, setIsPlaying] = useState<any>(false);
+
+  const mySynth = new Tone.Synth().toDestination();
+  const [synth, setSynth] = useState(mySynth);
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
     dispatch(selectTanpura(key));
   };
+
+  const onSelectPitch = (pitch: string) => {
+    setSelectedPitch(pitch);
+    dispatch(selectPitch(pitch));
+  };
+
+  const handlePlay = () => {
+    if (synth) {
+      synth.triggerAttack(`${selectedPitch}4`, "2n");
+      setIsPlaying(true);
+    }
+  };
+
+  const handleStop = () => {
+    if (synth) {
+      synth.triggerRelease();
+      setIsPlaying(false);
+    }
+  };
+
+  const handlePlayTanpura = () => {
+    setIsTanpuraSelected(!isTanpuraSelected);
+  };
+
+  useEffect(() => {
+    if (isTanpuraSelected) {
+      handlePlay();
+    } else if (isPlaying) {
+      handleStop();
+    }
+  }, [isTanpuraSelected]);
+
+  useEffect(() => {
+    if (isTanpuraSelected) {
+      handleStop();
+      handlePlay();
+    }
+  }, [selectedPitch]);
+
+  useEffect(() => {
+    const newSynth = new Tone.Synth().toDestination();
+    setSynth(newSynth);
+    return () => {
+      newSynth.dispose();
+    };
+  }, []);
 
   return (
     <div className="shruthi">
@@ -49,13 +101,15 @@ const shruthi = () => {
         ))}
       </div>
       <div className="shruthi-selector">
-        <ShruthiSelector />
+        <ShruthiSelector selectPitch={onSelectPitch} />
       </div>
       <TalaShortInfo />
       <div className="shruthi-controller-container">
         <div
-          className={`shruthi-controller ${tanpuraSelected ? "selected" : ""}`}
-          onClick={() => setTanpuraSelected(!tanpuraSelected)}
+          className={`shruthi-controller ${
+            isTanpuraSelected ? "selected" : ""
+          }`}
+          onClick={() => handlePlayTanpura()}
         >
           <img
             src={TanpuraIcon}

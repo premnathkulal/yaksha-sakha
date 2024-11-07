@@ -6,9 +6,11 @@ const TalaShortInfo = () => {
 
   return (
     <div className="tala-short-info">
-      <div className="tala-name">
-        {talaInfo.talaName}
-        <span className="tala-count"> ({talaInfo.talaCounts})</span>
+      <div className="tala-selection">
+        <div className="tala-name">
+          {talaInfo.talaName}
+          <span className="tala-count"> ({talaInfo.talaCounts})</span>
+        </div>
       </div>
       <div className="tala-maatra">
         {talaInfo.talaStructure.map((data) =>

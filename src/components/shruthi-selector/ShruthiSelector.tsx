@@ -5,9 +5,13 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const ShruthiSelector = () => {
+interface ShruthiSelectorProps {
+  selectPitch: (pitch: string) => void;
+}
+
+const ShruthiSelector = ({ selectPitch }: ShruthiSelectorProps) => {
   const [musicNotation, setMusicNotation] = useState(MusicNotation);
   const [activeItem, setActiveItem] = useState(MusicNotation[4]);
   const [prevItem, setPrevItem] = useState(MusicNotation[3]);
@@ -82,6 +86,10 @@ const ShruthiSelector = () => {
     if (!clickedLeft) return "fade-left";
     else return "fade-right";
   };
+
+  useEffect(() => {
+    selectPitch(activeItem.western);
+  }, [activeItem]);
 
   return (
     <div className="shruthi-selector">

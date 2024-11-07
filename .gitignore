@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# tempererly blocked files
-tuner.html
+# blocked files
+/poc

@@ -24,17 +24,29 @@
     }
   }
 
-  .tala-name {
+  .tala-selection {
     padding: 1rem;
-    font-size: 1.5rem;
+    padding-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    @media screen and (max-height: 700px) {
-      font-size: 1rem;
-      padding: 0.6rem;
-    }
+    .tala-name {
+      font-size: 1.2rem;
+      background: rgba(207, 198, 198, 0.473);
+      width: fit-content;
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+      font-weight: 600;
 
-    .tala-count {
-      font-size: 1rem;
+      @media screen and (max-height: 700px) {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+      }
+
+      .tala-count {
+        font-size: 0.8rem;
+      }
     }
   }
 
