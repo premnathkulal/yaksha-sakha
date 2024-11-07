@@ -10,6 +10,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    min-height: 17rem;
+    min-width: 17rem;
+
+    @media screen and (max-height: 700px) {
+      min-height: 10rem;
+      min-width: 10rem;
+    }
 
     .player-placeholder {
       width: 8rem;

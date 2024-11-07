@@ -11,12 +11,25 @@ import {
 import { TanpuraTypes } from "../../constants/UiData";
 import { useState } from "react";
 import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/app-store";
+import { selectTanpura } from "../../store/slices/selection-slice";
 
 const shruthi = () => {
+  const selectedTanpuraType = useSelector<RootState>(
+    (state) => state.selections.selectedTanpuraType
+  ) as string;
+  const dispatch = useDispatch();
+
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
   const [tanpuraSelected, setTanpuraSelected] = useState(false);
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
+
+  const onSelectTanpura = (key: string) => {
+    setSelectedTanpura(key);
+    dispatch(selectTanpura(key));
+  };
 
   return (
     <div className="shruthi">
@@ -31,7 +44,7 @@ const shruthi = () => {
             tanpuraKey={data.key}
             title={data.title}
             isSelected={selectedTanpura === data.key}
-            selectTanpura={() => setSelectedTanpura(data.key)}
+            selectTanpura={() => onSelectTanpura(data.key)}
           />
         ))}
       </div>
