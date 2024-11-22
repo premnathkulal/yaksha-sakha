@@ -133,7 +133,7 @@ export const TalaInfo = [
     id: "tala-eka",
     talaStructure: [2, 1, 1],
     talaRepresentation: ["ತಕ-ಧಿಮಿ", "ತಕ", "ಜನು"],
-    talaCounts: 40,
+    talaCounts: 4,
     talaName: "ಏಕ ತಾಳ",
   },
   {
