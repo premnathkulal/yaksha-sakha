@@ -14,9 +14,9 @@ import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/app-store";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
-import * as Tone from "tone";
 import useNotation from "../../hooks/useNotation";
 import usePlayTala from "../../hooks/usePlayTala";
+import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 
 const shruthi = () => {
   const selectedTanpuraType = useSelector<RootState>(
@@ -116,6 +116,7 @@ const shruthi = () => {
           />
         </div>
       </div>
+      <TalaListModal />
     </div>
   );
 };
