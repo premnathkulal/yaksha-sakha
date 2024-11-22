@@ -11,8 +11,8 @@ import {
 import { TanpuraTypes } from "../../constants/UiData";
 import { useEffect, useState } from "react";
 import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/app-store";
+import { useDispatch } from "react-redux";
+// import { RootState } from "../../store/app-store";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 import useNotation from "../../hooks/useNotation";
@@ -20,9 +20,9 @@ import usePlayChende from "../../hooks/usePlayChende";
 import usePlayTala from "../../hooks/usePlayTala";
 
 const shruthi = () => {
-  const selectedTanpuraType = useSelector<RootState>(
-    (state) => state.selections.selectedTanpuraType
-  ) as string;
+  // const selectedTanpuraType = useSelector<RootState>(
+  //   (state) => state.selections.selectedTanpuraType
+  // ) as string;
   const dispatch = useDispatch();
 
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
