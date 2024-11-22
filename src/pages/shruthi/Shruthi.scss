@@ -10,17 +10,20 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 17rem;
-    min-width: 17rem;
+    min-height: 12rem;
+    min-width: 12rem;
+
+    background: rgba(70, 70, 70, 0.1);
+    border-radius: 50%;
 
     @media screen and (max-height: 700px) {
-      min-height: 10rem;
-      min-width: 10rem;
+      min-height: 8rem;
+      min-width: 8rem;
     }
 
     .player-placeholder {
-      width: 8rem;
-      height: 8rem;
+      width: 6rem;
+      height: 6rem;
       position: absolute;
       background: #28282b;
       border-radius: 50%;
@@ -42,7 +45,7 @@
   }
 
   .shruthi-selector {
-    padding-bottom: 1rem;
+    padding: 0.4rem 0;
   }
 
   .shruthi-controller-container {

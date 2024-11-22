@@ -2,7 +2,7 @@ import "./TalaShortInfo.scss";
 import { TalaInfo } from "../../constants/UiData";
 
 const TalaShortInfo = () => {
-  const talaInfo = TalaInfo[1];
+  const talaInfo = TalaInfo[0];
 
   return (
     <div className="tala-short-info">

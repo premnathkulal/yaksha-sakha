@@ -64,7 +64,7 @@ const shruthi = () => {
   return (
     <div className="shruthi">
       <div className="player-animation">
-        <CircleWave />
+        {(isTanpuraSelected || chendeSelected) && <CircleWave />}
         <img src={YakshaMan} alt="img" className="player-placeholder" />
       </div>
       <div className="shruthi-selector">
