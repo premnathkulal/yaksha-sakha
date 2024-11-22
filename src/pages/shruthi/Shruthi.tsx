@@ -14,9 +14,10 @@ import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/app-store";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
-import useNotation from "../../hooks/useNotation";
-import usePlayTala from "../../hooks/usePlayTala";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
+import useNotation from "../../hooks/useNotation";
+import usePlayChende from "../../hooks/usePlayChende";
+import usePlayTala from "../../hooks/usePlayTala";
 
 const shruthi = () => {
   const selectedTanpuraType = useSelector<RootState>(
@@ -30,9 +31,11 @@ const shruthi = () => {
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
   const [showTalaList, setShowTalaList] = useState(false);
+  const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleChendePlayPause } = usePlayTala();
+  const { handleChendePlayPause } = usePlayChende();
+  const { handleTalaPlayPause } = usePlayTala();
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
@@ -52,6 +55,10 @@ const shruthi = () => {
     setShowTalaList(!showTalaList);
   };
 
+  const onSelectTala = (id: string) => {
+    setSelectedTalaId(id);
+  };
+
   useEffect(() => {
     handlePlayPause(isTanpuraSelected);
   }, [isTanpuraSelected]);
@@ -66,10 +73,16 @@ const shruthi = () => {
     handleChendePlayPause(chendeSelected);
   }, [chendeSelected]);
 
+  useEffect(() => {
+    handleTalaPlayPause(talaSelected);
+  }, [talaSelected]);
+
   return (
     <div className="shruthi">
       <div className="player-animation">
-        {(isTanpuraSelected || chendeSelected) && <CircleWave />}
+        {(isTanpuraSelected || chendeSelected || talaSelected) && (
+          <CircleWave />
+        )}
         <img src={YakshaMan} alt="img" className="player-placeholder" />
       </div>
       <div className="shruthi-selector">
@@ -86,7 +99,10 @@ const shruthi = () => {
           />
         ))}
       </div>
-      <TalaShortInfo showTalaList={toggleShowTalaList} />
+      <TalaShortInfo
+        showTalaList={toggleShowTalaList}
+        selectedTalaId={selectedTalaId}
+      />
       <div className="shruthi-controller-container">
         <div
           className={`shruthi-controller ${
@@ -122,7 +138,10 @@ const shruthi = () => {
         </div>
       </div>
       {showTalaList && (
-        <TalaListModal toggleTalaListModal={toggleShowTalaList} />
+        <TalaListModal
+          toggleTalaListModal={toggleShowTalaList}
+          selectTala={onSelectTala}
+        />
       )}
     </div>
   );

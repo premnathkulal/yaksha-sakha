@@ -1,9 +1,9 @@
 import { useState } from "react";
 import * as Tone from "tone";
-import EktalBidita from "../assets/audio/chende-beats/ekatala-bidita.m4a";
+import Ektal from "../assets/audio/chende-beats/ekatala.m4a";
 
 const player = new Tone.Player({
-  url: EktalBidita, // Replace with your audio file URL
+  url: Ektal, // Replace with your audio file URL
   loop: true, // Enable looping
   autostart: false, // Do not autoplay initially
 }).toDestination(); // Connect the player to the output (speakers)
@@ -11,7 +11,7 @@ const player = new Tone.Player({
 const usePlayChende = () => {
   const [isPlaying, setIsPlaying] = useState<any>(false);
 
-  const handleTalaPlayPause = (play: boolean) => {
+  const handleChendePlayPause = (play: boolean) => {
     if (play) {
       handlePlay();
     } else if (isPlaying) {
@@ -36,7 +36,7 @@ const usePlayChende = () => {
     }, 0);
   };
 
-  return { handleTalaPlayPause, onSelectNewTala };
+  return { handleChendePlayPause, onSelectNewTala };
 };
 
 export default usePlayChende;

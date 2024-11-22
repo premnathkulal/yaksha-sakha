@@ -3,20 +3,23 @@ import { TalaInfo } from "../../constants/UiData";
 
 interface TalaListModalProps {
   toggleTalaListModal: () => void;
+  selectTala: (id: string) => void;
 }
 
 const TalaListModal = (props: TalaListModalProps) => {
-  const { toggleTalaListModal } = props;
+  const { toggleTalaListModal, selectTala } = props;
 
-  const prem = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onSelectTala = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
     e.stopPropagation();
+    selectTala(id);
+    toggleTalaListModal();
   };
 
   return (
     <div className="tala-list-modal" onClick={toggleTalaListModal}>
       <div className="tala-list-container">
         {TalaInfo.map((data) => (
-          <div className="tala-info" onClick={prem}>
+          <div className="tala-info" onClick={(e) => onSelectTala(e, data.id)}>
             <p className="tala-name">
               {data.talaName}
               <span className="tala-count">({data.talaCounts})</span>

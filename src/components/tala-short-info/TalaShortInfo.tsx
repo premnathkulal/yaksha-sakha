@@ -1,13 +1,23 @@
 import "./TalaShortInfo.scss";
 import { TalaInfo } from "../../constants/UiData";
+import { useEffect, useState } from "react";
 
 interface TalaShortInfoProps {
+  selectedTalaId: string;
   showTalaList: () => void;
 }
 
 const TalaShortInfo = (props: TalaShortInfoProps) => {
-  const { showTalaList } = props;
-  const talaInfo = TalaInfo[0];
+  const { selectedTalaId, showTalaList } = props;
+  const [talaInfo, setTalaInfo] = useState(TalaInfo[0]);
+
+  useEffect(() => {
+    TalaInfo.forEach((data) => {
+      if (data.id === selectedTalaId) {
+        setTalaInfo(data);
+      }
+    });
+  }, [selectedTalaId]);
 
   return (
     <div className="tala-short-info">
