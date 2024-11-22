@@ -8,10 +8,10 @@ import {
 import { useEffect, useState } from "react";
 
 interface ShruthiSelectorProps {
-  selectPitch: (pitch: string) => void;
+  selectFrequency: (pitch: number) => void;
 }
 
-const ShruthiSelector = ({ selectPitch }: ShruthiSelectorProps) => {
+const ShruthiSelector = ({ selectFrequency }: ShruthiSelectorProps) => {
   const [musicNotation, setMusicNotation] = useState(MusicNotation);
   const [activeItem, setActiveItem] = useState(MusicNotation[4]);
   const [prevItem, setPrevItem] = useState(MusicNotation[3]);
@@ -88,7 +88,7 @@ const ShruthiSelector = ({ selectPitch }: ShruthiSelectorProps) => {
   };
 
   useEffect(() => {
-    selectPitch(activeItem.western);
+    selectFrequency(activeItem.frequency);
   }, [activeItem]);
 
   return (

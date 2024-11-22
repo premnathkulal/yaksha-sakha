@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/app-store";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import * as Tone from "tone";
+import useNotation from "../../hooks/useNotation";
 
 const shruthi = () => {
   const selectedTanpuraType = useSelector<RootState>(
@@ -23,37 +24,21 @@ const shruthi = () => {
   const dispatch = useDispatch();
 
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
-  const [selectedPitch, setSelectedPitch] = useState("C");
+  const [selectedFrequency, setSelectedFrequency] = useState(400);
   const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
-  const [isPlaying, setIsPlaying] = useState<any>(false);
 
-  const mySynth = new Tone.Synth().toDestination();
-  const [synth, setSynth] = useState(mySynth);
+  const { handlePlayPause, onSelectNewNote } = useNotation();
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
     dispatch(selectTanpura(key));
   };
 
-  const onSelectPitch = (pitch: string) => {
-    setSelectedPitch(pitch);
+  const onSelectFrequency = (pitch: number) => {
+    setSelectedFrequency(pitch);
     dispatch(selectPitch(pitch));
-  };
-
-  const handlePlay = () => {
-    if (synth) {
-      synth.triggerAttack(`${selectedPitch}4`, "2n");
-      setIsPlaying(true);
-    }
-  };
-
-  const handleStop = () => {
-    if (synth) {
-      synth.triggerRelease();
-      setIsPlaying(false);
-    }
   };
 
   const handlePlayTanpura = () => {
@@ -61,33 +46,23 @@ const shruthi = () => {
   };
 
   useEffect(() => {
-    if (isTanpuraSelected) {
-      handlePlay();
-    } else if (isPlaying) {
-      handleStop();
-    }
+    handlePlayPause(isTanpuraSelected);
   }, [isTanpuraSelected]);
 
   useEffect(() => {
     if (isTanpuraSelected) {
-      handleStop();
-      handlePlay();
+      onSelectNewNote(selectedFrequency);
     }
-  }, [selectedPitch]);
-
-  useEffect(() => {
-    const newSynth = new Tone.Synth().toDestination();
-    setSynth(newSynth);
-    return () => {
-      newSynth.dispose();
-    };
-  }, []);
+  }, [selectedFrequency]);
 
   return (
     <div className="shruthi">
       <div className="player-animation">
         <CircleWave />
         <img src={YakshaMan} alt="img" className="player-placeholder" />
+      </div>
+      <div className="shruthi-selector">
+        <ShruthiSelector selectFrequency={onSelectFrequency} />
       </div>
       <div className="shruthi-cards">
         {TanpuraTypes.map((data) => (
@@ -99,9 +74,6 @@ const shruthi = () => {
             selectTanpura={() => onSelectTanpura(data.key)}
           />
         ))}
-      </div>
-      <div className="shruthi-selector">
-        <ShruthiSelector selectPitch={onSelectPitch} />
       </div>
       <TalaShortInfo />
       <div className="shruthi-controller-container">

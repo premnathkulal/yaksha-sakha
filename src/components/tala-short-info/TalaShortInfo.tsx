@@ -13,22 +13,26 @@ const TalaShortInfo = () => {
         </div>
       </div>
       <div className="tala-maatra">
-        {talaInfo.talaStructure.map((data) =>
+        {talaInfo.talaStructure.map((data, index) =>
           data === 2 ? (
-            <div className="tala-guru">2</div>
+            <div className="tala-guru" key={index}>
+              2
+            </div>
           ) : (
-            <div className="tala-laghu">1</div>
+            <div className="tala-laghu" key={index}>
+              1
+            </div>
           )
         )}
       </div>
       <div className="tala-rep">
         {talaInfo.talaStructure.map((data, index) =>
           data === 2 ? (
-            <div className="tala-guru">
+            <div className="tala-guru" key={index}>
               {talaInfo.talaRepresentation[index]}
             </div>
           ) : (
-            <div className="tala-laghu">
+            <div className="tala-laghu" key={index}>
               {talaInfo.talaRepresentation[index]}
             </div>
           )
