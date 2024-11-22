@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as Tone from "tone";
 
 const synth = new Tone.PolySynth(Tone.Synth, {
+  volume: -34,
   oscillator: {
     type: "sawtooth15", // Sawtooth for harmonium-like timbre
   },

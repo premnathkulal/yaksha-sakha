@@ -16,6 +16,7 @@ import { RootState } from "../../store/app-store";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import * as Tone from "tone";
 import useNotation from "../../hooks/useNotation";
+import usePlayTala from "../../hooks/usePlayTala";
 
 const shruthi = () => {
   const selectedTanpuraType = useSelector<RootState>(
@@ -30,6 +31,7 @@ const shruthi = () => {
   const [chendeSelected, setChendeSelected] = useState(false);
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
+  const { handleChendePlayPause } = usePlayTala();
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
@@ -54,6 +56,10 @@ const shruthi = () => {
       onSelectNewNote(selectedFrequency);
     }
   }, [selectedFrequency]);
+
+  useEffect(() => {
+    handleChendePlayPause(chendeSelected);
+  }, [chendeSelected]);
 
   return (
     <div className="shruthi">
