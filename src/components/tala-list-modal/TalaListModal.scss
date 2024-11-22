@@ -10,6 +10,25 @@
   background: rgba(41, 36, 36, 0.879);
 
   .tala-list-container {
-    width: 100%;
+    min-width: 90%;
+    background: #e2e1e1;
+    max-height: 36rem;
+    overflow-y: scroll;
+
+    .tala-info {
+      color: #000000;
+      font-weight: 600;
+      border-bottom: 0.6px solid rgb(168, 165, 165);
+
+      .tala-name {
+        margin: 0;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+
+        .tala-count {
+          font-size: 0.6rem;
+        }
+      }
+    }
   }
 }

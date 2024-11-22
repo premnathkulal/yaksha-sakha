@@ -1,12 +1,17 @@
 import "./TalaShortInfo.scss";
 import { TalaInfo } from "../../constants/UiData";
 
-const TalaShortInfo = () => {
+interface TalaShortInfoProps {
+  showTalaList: () => void;
+}
+
+const TalaShortInfo = (props: TalaShortInfoProps) => {
+  const { showTalaList } = props;
   const talaInfo = TalaInfo[0];
 
   return (
     <div className="tala-short-info">
-      <div className="tala-selection">
+      <div className="tala-selection" onClick={showTalaList}>
         <div className="tala-name">
           {talaInfo.talaName}
           <span className="tala-count"> ({talaInfo.talaCounts})</span>

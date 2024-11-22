@@ -29,6 +29,7 @@ const shruthi = () => {
   const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
+  const [showTalaList, setShowTalaList] = useState(false);
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
   const { handleChendePlayPause } = usePlayTala();
@@ -45,6 +46,10 @@ const shruthi = () => {
 
   const handlePlayTanpura = () => {
     setIsTanpuraSelected(!isTanpuraSelected);
+  };
+
+  const toggleShowTalaList = () => {
+    setShowTalaList(!showTalaList);
   };
 
   useEffect(() => {
@@ -81,7 +86,7 @@ const shruthi = () => {
           />
         ))}
       </div>
-      <TalaShortInfo />
+      <TalaShortInfo showTalaList={toggleShowTalaList} />
       <div className="shruthi-controller-container">
         <div
           className={`shruthi-controller ${
@@ -116,7 +121,9 @@ const shruthi = () => {
           />
         </div>
       </div>
-      <TalaListModal />
+      {showTalaList && (
+        <TalaListModal toggleTalaListModal={toggleShowTalaList} />
+      )}
     </div>
   );
 };
