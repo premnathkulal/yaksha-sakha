@@ -29,20 +29,20 @@ const TalaShortInfo = (props: TalaShortInfoProps) => {
       </div>
       <div className="tala-maatra">
         {talaInfo.talaStructure.map((data, index) =>
-          data === 2 ? (
+          data === 2 || typeof data === "string" ? (
             <div className="tala-guru" key={index}>
-              2
+              {data}
             </div>
           ) : (
             <div className="tala-laghu" key={index}>
-              1
+              {data}
             </div>
           )
         )}
       </div>
       <div className="tala-rep">
         {talaInfo.talaStructure.map((data, index) =>
-          data === 2 ? (
+          data === 2 || typeof data === "string" ? (
             <div className="tala-guru" key={index}>
               {talaInfo.talaRepresentation[index]}
             </div>

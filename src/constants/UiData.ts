@@ -178,8 +178,8 @@ export const TalaInfo = [
   },
   {
     id: "tala-twarita-trivude",
-    talaStructure: [],
-    talaRepresentation: [],
+    talaStructure: ["2+1", 2, 2],
+    talaRepresentation: ["ತಕಿಟ", "ತಕ", "ಧಿಮಿ"],
     talaCounts: 7,
     talaName: "ತ್ವರಿತ ತ್ರಿವುಡೆ ತಾಳ",
   },

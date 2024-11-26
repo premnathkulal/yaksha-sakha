@@ -37,7 +37,7 @@ const useNotation = () => {
     }
   };
 
-  const handlePlay = (newPitchFrequency = 400) => {
+  const handlePlay = (newPitchFrequency = 329.63) => {
     synth.triggerAttackRelease(newPitchFrequency, "0n");
     setIsPlaying(true);
   };

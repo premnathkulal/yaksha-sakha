@@ -26,7 +26,7 @@ const shruthi = () => {
   const dispatch = useDispatch();
 
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
-  const [selectedFrequency, setSelectedFrequency] = useState(400);
+  const [selectedFrequency, setSelectedFrequency] = useState(329.63);
   const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
