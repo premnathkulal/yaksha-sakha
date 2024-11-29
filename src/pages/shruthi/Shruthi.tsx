@@ -12,7 +12,6 @@ import { TanpuraTypes } from "../../constants/UiData";
 import { useEffect, useState } from "react";
 import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
 import { useDispatch } from "react-redux";
-// import { RootState } from "../../store/app-store";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 import useNotation from "../../hooks/useNotation";
@@ -34,7 +33,8 @@ const shruthi = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleChendePlayPause } = usePlayChende();
+  const { handleChendePlayPause, handleChendePlayPauseInCount, playCount } =
+    usePlayChende();
   const { handleTalaPlayPause } = usePlayTala();
 
   const onSelectTanpura = (key: string) => {
@@ -70,7 +70,8 @@ const shruthi = () => {
   }, [selectedFrequency]);
 
   useEffect(() => {
-    handleChendePlayPause(chendeSelected);
+    // handleChendePlayPause(chendeSelected);
+    handleChendePlayPauseInCount(chendeSelected, true);
   }, [chendeSelected]);
 
   useEffect(() => {
@@ -79,12 +80,12 @@ const shruthi = () => {
 
   return (
     <div className="shruthi">
-      <div className="player-animation">
+      {/* <div className="player-animation">
         {(isTanpuraSelected || chendeSelected || talaSelected) && (
           <CircleWave />
         )}
         <img src={YakshaMan} alt="img" className="player-placeholder" />
-      </div>
+      </div> */}
       <div className="shruthi-selector">
         <ShruthiSelector selectFrequency={onSelectFrequency} />
       </div>
