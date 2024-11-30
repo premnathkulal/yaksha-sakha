@@ -10,7 +10,7 @@ const player = new Tone.Player({
 
 const usePlayChendeBidita = () => {
   const [isPlaying, setIsPlaying] = useState<any>(false);
-  const [end, setEnd] = useState<any>(false);
+  const [isCompleted, setIsCompleted] = useState<any>(false);
 
   const handleTalaPlayPause = (play: boolean) => {
     if (play) {
@@ -23,21 +23,21 @@ const usePlayChendeBidita = () => {
   const handlePlay = () => {
     player.start();
     setIsPlaying(true);
+    player.onstop = () => {
+      handlePause();
+    };
   };
 
   const handlePause = () => {
     player.stop();
     setIsPlaying(false);
-  };
-
-  const onSelectNewTala = () => {
-    handlePause();
+    setIsCompleted(true);
     setTimeout(() => {
-      handlePlay();
-    }, 0);
+      setIsCompleted(false);
+    });
   };
 
-  return { handleTalaPlayPause, onSelectNewTala, end };
+  return { handleTalaPlayPause, isCompleted };
 };
 
 export default usePlayChendeBidita;

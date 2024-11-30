@@ -10,38 +10,34 @@ const player = new Tone.Player({
   autostart: false, // Do not autoplay initially
 }).toDestination();
 
+const maxAvarta = 1;
+const playSteps = ["avarta", "bidita", "avarta", "bidita", "avarta", "muktaya"];
+
 const usePlayChende = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playCount, setPlayCount] = useState(0);
   const [toneId, setToneId] = useState(0);
-  const [isBeforeBidita, setIsBeforeBiditasetToneId] = useState(false);
+  const [playingSteps, setPlayingSteps] = useState(playSteps.slice(1));
 
-  const { handleTalaPlayPause, end } = usePlayTala();
+  const { handleTalaPlayPause, isCompleted } = usePlayTala();
   const { handleTalaPlayPauseMuk } = usePlayChendeMuktaya();
 
   useEffect(() => {
-    if (playCount > 1 && isBeforeBidita) {
+    if (playCount > maxAvarta && playingSteps[0] === "bidita") {
+      setPlayingSteps(playingSteps.slice(1));
       handleTalaPlayPause(true);
-      setTimeout(() => {
-        setPlayCount(-1);
-      }, 16600);
-    } else if (playCount > 1) {
+    } else if (playCount > maxAvarta && playingSteps[0] === "muktaya") {
+      setPlayingSteps(playingSteps.slice(1));
       handleTalaPlayPauseMuk(true);
     }
   }, [playCount]);
 
   useEffect(() => {
-    if (end) {
-      setPlayCount(-1);
+    if (isCompleted && playingSteps[0] === "avarta") {
+      setPlayingSteps(playingSteps.slice(1));
+      handleChendePlayPauseInCount(true);
     }
-  }, [end]);
-
-  useEffect(() => {
-    if (playCount === -1) {
-      setPlayCount(0);
-      handleChendePlayPauseInCount(true, false);
-    }
-  }, [playCount]);
+  }, [isCompleted]);
 
   const handleChendePlayPause = (play: boolean) => {
     if (play) {
@@ -61,11 +57,7 @@ const usePlayChende = () => {
     setIsPlaying(false);
   };
 
-  const handleChendePlayPauseInCount = (
-    play: boolean,
-    beforeBidita: boolean
-  ) => {
-    setIsBeforeBiditasetToneId(beforeBidita);
+  const handleChendePlayPauseInCount = (play: boolean) => {
     if (play) {
       handlePlayInCount();
     } else if (isPlaying) {
@@ -105,7 +97,7 @@ const usePlayChende = () => {
     const toneIds = Tone.getTransport().scheduleRepeat(() => {
       setPlayCount((prevCount) => {
         const newCount = prevCount + 1;
-        if (newCount > 1) {
+        if (newCount > maxAvarta) {
           handlePauseInCount();
         }
         return newCount;

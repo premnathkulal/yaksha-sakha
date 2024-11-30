@@ -71,7 +71,7 @@ const shruthi = () => {
 
   useEffect(() => {
     // handleChendePlayPause(chendeSelected);
-    handleChendePlayPauseInCount(chendeSelected, true);
+    handleChendePlayPauseInCount(chendeSelected);
   }, [chendeSelected]);
 
   useEffect(() => {
