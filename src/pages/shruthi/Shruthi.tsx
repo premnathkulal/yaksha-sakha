@@ -1,11 +1,11 @@
 import "./Shruthi.scss";
-import CircleWave from "../../components/circle-wave/CircleWave";
+// import CircleWave from "../../components/circle-wave/CircleWave";
 import ShruthiCard from "../../components/shruthi-card/ShruthiCard";
 import ShruthiSelector from "../../components/shruthi-selector/ShruthiSelector";
 import {
   ChendeIcon,
   TanpuraIcon,
-  YakshaMan,
+  // YakshaMan,
   JagateIcon,
 } from "../../utils/assets";
 import { TanpuraTypes } from "../../constants/UiData";
@@ -33,8 +33,7 @@ const shruthi = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleChendePlayPause, handleChendePlayPauseInCount, playCount } =
-    usePlayChende();
+  const { handleChendePlayPauseInCount } = usePlayChende();
   const { handleTalaPlayPause } = usePlayTala();
 
   const onSelectTanpura = (key: string) => {

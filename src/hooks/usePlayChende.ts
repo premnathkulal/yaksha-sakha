@@ -4,6 +4,12 @@ import Ektal from "../assets/audio/chende-beats/ekatala.m4a";
 import usePlayTala from "../hooks/usePlayTala";
 import usePlayChendeMuktaya from "../hooks/usePlayMuktaya";
 
+const enum BeatTerms {
+  Avarta = "avarta",
+  Bidita = "bidita",
+  Muktaya = "muktaya",
+}
+
 const player = new Tone.Player({
   url: Ektal, // Replace with your audio file URL
   loop: true, // Enable looping
@@ -11,7 +17,12 @@ const player = new Tone.Player({
 }).toDestination();
 
 const maxAvarta = 1;
-const playSteps = ["avarta", "bidita", "avarta", "bidita", "avarta", "muktaya"];
+const playSteps = [
+  BeatTerms.Avarta,
+  BeatTerms.Bidita,
+  BeatTerms.Avarta,
+  BeatTerms.Muktaya,
+];
 
 const usePlayChende = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -23,17 +34,17 @@ const usePlayChende = () => {
   const { handleTalaPlayPauseMuk } = usePlayChendeMuktaya();
 
   useEffect(() => {
-    if (playCount > maxAvarta && playingSteps[0] === "bidita") {
+    if (playCount > maxAvarta && playingSteps[0] === BeatTerms.Bidita) {
       setPlayingSteps(playingSteps.slice(1));
       handleTalaPlayPause(true);
-    } else if (playCount > maxAvarta && playingSteps[0] === "muktaya") {
+    } else if (playCount > maxAvarta && playingSteps[0] === BeatTerms.Muktaya) {
       setPlayingSteps(playingSteps.slice(1));
       handleTalaPlayPauseMuk(true);
     }
   }, [playCount]);
 
   useEffect(() => {
-    if (isCompleted && playingSteps[0] === "avarta") {
+    if (isCompleted && playingSteps[0] === BeatTerms.Avarta) {
       setPlayingSteps(playingSteps.slice(1));
       handleChendePlayPauseInCount(true);
     }
