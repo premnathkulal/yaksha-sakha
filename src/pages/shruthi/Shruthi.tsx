@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 import useNotation from "../../hooks/useNotation";
-import usePlayChende from "../../hooks/usePlayChende";
+import usePlayHimmela from "../../hooks/usePlayHimmela";
 import usePlayTala from "../../hooks/usePlayTala";
 
 const shruthi = () => {
@@ -33,7 +33,7 @@ const shruthi = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleChendePlayPauseInCount } = usePlayChende();
+  const { handleChendePlayPauseInCount, playCount } = usePlayHimmela();
   const { handleTalaPlayPause } = usePlayTala();
 
   const onSelectTanpura = (key: string) => {
