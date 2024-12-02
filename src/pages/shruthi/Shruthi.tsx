@@ -136,6 +136,7 @@ const shruthi = () => {
             className="instrument-icon chende-icon"
           />
         </div>
+        {playCount}
       </div>
       {showTalaList && (
         <TalaListModal

@@ -8,7 +8,7 @@ let player = new Tone.Player({
   autostart: false, // Do not autoplay initially
 }).toDestination();
 
-const maxAvarta = 1;
+const maxAvarta = 2;
 
 const usePlayChende = () => {
   const [isPlaying, setIsPlaying] = useState(false);
