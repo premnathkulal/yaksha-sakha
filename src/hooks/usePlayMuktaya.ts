@@ -1,42 +1,42 @@
 import { useState } from "react";
 import * as Tone from "tone";
-import EktalMuktaya from "../assets/audio/chende-beats/ekatala-muktaya.m4a";
+import EkatalaMuktaya from "../assets/audio/chende-beats/ekatala-muktaya.m4a";
 
 const player = new Tone.Player({
-  url: EktalMuktaya, // Replace with your audio file URL
-  // loop: true, // Enable looping
-  autostart: false, // Do not autoplay initially
-}).toDestination(); // Connect the player to the output (speakers)
+  url: EkatalaMuktaya,
+  autostart: false,
+}).toDestination();
 
-const usePlayChendeMuktaya = () => {
+const usePlayMuktaya = () => {
   const [isPlaying, setIsPlaying] = useState<any>(false);
+  const [isMuktayaCompleted, setIsMuktayaCompleted] = useState<any>(false);
 
-  const handleTalaPlayPauseMuk = (play: boolean) => {
+  const handleMuktaya = (play: boolean) => {
     if (play) {
-      handlePlay();
+      playMuktaya();
     } else if (isPlaying) {
-      handlePause();
+      pauseMuktaya();
     }
   };
 
-  const handlePlay = () => {
+  const playMuktaya = () => {
     player.start();
     setIsPlaying(true);
+    player.onstop = () => {
+      pauseMuktaya();
+    };
   };
 
-  const handlePause = () => {
+  const pauseMuktaya = () => {
     player.stop();
     setIsPlaying(false);
-  };
-
-  const onSelectNewTala = () => {
-    handlePause();
+    setIsMuktayaCompleted(true);
     setTimeout(() => {
-      handlePlay();
-    }, 0);
+      setIsMuktayaCompleted(false);
+    }, 1000);
   };
 
-  return { handleTalaPlayPauseMuk, onSelectNewTala };
+  return { handleMuktaya, isMuktayaCompleted };
 };
 
-export default usePlayChendeMuktaya;
+export default usePlayMuktaya;

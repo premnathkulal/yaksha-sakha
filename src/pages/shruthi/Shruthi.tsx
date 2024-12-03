@@ -16,7 +16,7 @@ import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 import useNotation from "../../hooks/useNotation";
 import usePlayHimmela from "../../hooks/usePlayHimmela";
-import usePlayTala from "../../hooks/usePlayTala";
+import usePlayTala from "../../hooks/usePlayBidita";
 
 const shruthi = () => {
   // const selectedTanpuraType = useSelector<RootState>(
@@ -33,8 +33,7 @@ const shruthi = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleChendePlayPauseInCount, playCount } = usePlayHimmela();
-  const { handleTalaPlayPause } = usePlayTala();
+  const { handleAvarta, playCount } = usePlayHimmela();
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
@@ -70,12 +69,10 @@ const shruthi = () => {
 
   useEffect(() => {
     // handleChendePlayPause(chendeSelected);
-    handleChendePlayPauseInCount(chendeSelected);
+    handleAvarta(chendeSelected, 2);
   }, [chendeSelected]);
 
-  useEffect(() => {
-    handleTalaPlayPause(talaSelected);
-  }, [talaSelected]);
+  useEffect(() => {}, [talaSelected]);
 
   return (
     <div className="shruthi">

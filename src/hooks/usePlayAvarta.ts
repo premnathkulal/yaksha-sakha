@@ -3,65 +3,57 @@ import * as Tone from "tone";
 import Ektal from "../assets/audio/chende-beats/ekatala.m4a";
 
 let player = new Tone.Player({
-  url: Ektal, // Replace with your audio file URL
-  loop: true, // Enable looping
-  autostart: false, // Do not autoplay initially
+  url: Ektal,
+  loop: true,
+  autostart: false,
 }).toDestination();
 
-const maxAvarta = 2;
-
-const usePlayChende = () => {
+const usePlayAvarta = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [playCount, setPlayCount] = useState(0);
   const [toneId, setToneId] = useState(0);
+  const [playCount, setPlayCount] = useState(0);
 
-  const handleChendePlayPause = (play: boolean) => {
+  const handleInfiniteAvarta = (play: boolean) => {
     if (play) {
-      handlePlay();
+      handleInfiniteAvartaPlay();
     } else if (isPlaying) {
-      handlePause();
+      handleInfiniteAvartaPause();
     }
   };
 
-  const handlePlay = () => {
+  const handleInfiniteAvartaPlay = () => {
     player.start();
     setIsPlaying(true);
   };
 
-  const handlePause = () => {
+  const handleInfiniteAvartaPause = () => {
     player.stop();
     setIsPlaying(false);
   };
 
-  const handleChendePlayPauseInCount = (play: boolean) => {
+  const handleAvarta = (play: boolean, totalAvarta: number) => {
     if (play) {
-      handlePlayInCount();
+      handleAvartaPlay(totalAvarta);
     } else if (isPlaying) {
-      handlePauseInCount();
+      handleAvartaPause();
     }
   };
 
-  const handlePlayInCount = () => {
+  const handleAvartaPlay = (totalAvarta: number) => {
     setPlayCount(0);
     player.start();
-    trackRepetitions();
+    trackRepetitions(totalAvarta);
     setIsPlaying(true);
   };
 
-  const handlePauseInCount = () => {
+  const handleAvartaPause = () => {
     player.stop();
-    Tone.getTransport().stop(); // Ensure Transport stops
+    Tone.getTransport().stop();
     setIsPlaying(false);
+    Tone.getTransport().clear(toneId);
   };
 
-  const onSelectNewTala = () => {
-    handlePause();
-    setTimeout(() => {
-      handlePlay();
-    }, 0);
-  };
-
-  const trackRepetitions = () => {
+  const trackRepetitions = (totalAvarta: number) => {
     setPlayCount(0);
     const loopDuration = player.buffer.duration;
 
@@ -72,8 +64,8 @@ const usePlayChende = () => {
     const toneIds = Tone.getTransport().scheduleRepeat(() => {
       setPlayCount((prevCount) => {
         const newCount = prevCount + 1;
-        if (newCount > maxAvarta) {
-          handlePauseInCount();
+        if (newCount > totalAvarta) {
+          handleAvartaPause();
         }
         return newCount;
       });
@@ -83,11 +75,10 @@ const usePlayChende = () => {
   };
 
   return {
-    handleChendePlayPause,
-    handleChendePlayPauseInCount,
-    onSelectNewTala,
+    handleInfiniteAvarta,
+    handleAvarta,
     playCount,
   };
 };
 
-export default usePlayChende;
+export default usePlayAvarta;

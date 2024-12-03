@@ -1,55 +1,50 @@
 import { useEffect, useState } from "react";
-import usePlayTala from "./usePlayTala";
+import usePlayTala from "./usePlayBidita";
 import usePlayChendeMuktaya from "./usePlayMuktaya";
-import usePlayChende from "./usePlayChende";
+import usePlayChende from "./usePlayAvarta";
+import { HimmelaTerms } from "../utils/enum";
 
-const enum BeatTerms {
-  Avarta = "avarta",
-  Bidita = "bidita",
-  Muktaya = "muktaya",
-}
-
-const maxAvarta = 1;
+const maxAvarta = 2;
 const playSteps = [
-  BeatTerms.Avarta,
-  BeatTerms.Bidita,
-  BeatTerms.Avarta,
-  BeatTerms.Bidita,
-  BeatTerms.Avarta,
-  BeatTerms.Muktaya,
+  HimmelaTerms.Avarta,
+  HimmelaTerms.Bidita,
+  HimmelaTerms.Avarta,
+  HimmelaTerms.Bidita,
+  HimmelaTerms.Avarta,
+  HimmelaTerms.Muktaya,
 ];
 
 const usePlayHimmela = () => {
   const [playingSteps, setPlayingSteps] = useState(playSteps.slice(1));
-
-  const { handleTalaPlayPause, isCompleted } = usePlayTala();
-  const { handleTalaPlayPauseMuk } = usePlayChendeMuktaya();
-  const { handleChendePlayPauseInCount, handleChendePlayPause, playCount } =
-    usePlayChende();
+  const { handleBidita, isBiditaCompleted } = usePlayTala();
+  const { handleMuktaya, isMuktayaCompleted } = usePlayChendeMuktaya();
+  const { handleAvarta, handleInfiniteAvarta, playCount } = usePlayChende();
 
   useEffect(() => {
-    if (playCount > maxAvarta && playingSteps[0] === BeatTerms.Bidita) {
-      console.log("Sansa Bidita", playingSteps);
-      handleTalaPlayPause(true);
-      setPlayingSteps(playingSteps.slice(1));
-    } else if (playCount > maxAvarta && playingSteps[0] === BeatTerms.Muktaya) {
-      console.log("Sansa Muktaya", playingSteps);
-      handleTalaPlayPauseMuk(true);
-      setPlayingSteps(playingSteps.slice(1));
+    if (playCount > maxAvarta) {
+      if (playingSteps[0] === HimmelaTerms.Bidita) {
+        handleBidita(true);
+        setPlayingSteps(playingSteps.slice(1));
+      } else if (playingSteps[0] === HimmelaTerms.Muktaya) {
+        handleMuktaya(true);
+        setPlayingSteps(playingSteps.slice(1));
+      }
     }
   }, [playCount]);
 
   useEffect(() => {
-    if (isCompleted && playingSteps[0] === BeatTerms.Avarta) {
-      console.log("Sansa Avarta", playingSteps, playCount);
-      handleChendePlayPauseInCount(true);
+    if (
+      (isBiditaCompleted || isMuktayaCompleted) &&
+      playingSteps[0] === HimmelaTerms.Avarta
+    ) {
+      handleAvarta(true, maxAvarta);
       setPlayingSteps(playingSteps.slice(1));
     }
-  }, [isCompleted]);
+  }, [isBiditaCompleted, isMuktayaCompleted]);
 
   return {
-    handleChendePlayPause,
-    handleChendePlayPauseInCount,
+    handleInfiniteAvarta,
+    handleAvarta,
     playCount,
   };
 };
