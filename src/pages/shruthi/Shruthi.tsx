@@ -16,7 +16,6 @@ import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 import useNotation from "../../hooks/useNotation";
 import usePlayHimmela from "../../hooks/usePlayHimmela";
-import usePlayTala from "../../hooks/usePlayBidita";
 
 const shruthi = () => {
   // const selectedTanpuraType = useSelector<RootState>(
