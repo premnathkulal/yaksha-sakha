@@ -11,6 +11,7 @@ import {
 import { TanpuraTypes } from "../../constants/UiData";
 import { useEffect, useState } from "react";
 import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
+import SetHimmelaPattern from "../../components/set-himmela-pattern/SetHimmelaPattern";
 import { useDispatch } from "react-redux";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import TalaListModal from "../../components/tala-list-modal/TalaListModal";
@@ -28,7 +29,6 @@ const shruthi = () => {
   const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
   const [talaSelected, setTalaSelected] = useState(false);
   const [chendeSelected, setChendeSelected] = useState(false);
-  const [showTalaList, setShowTalaList] = useState(false);
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
@@ -46,10 +46,6 @@ const shruthi = () => {
 
   const handlePlayTanpura = () => {
     setIsTanpuraSelected(!isTanpuraSelected);
-  };
-
-  const toggleShowTalaList = () => {
-    setShowTalaList(!showTalaList);
   };
 
   const onSelectTala = (id: string) => {
@@ -96,9 +92,10 @@ const shruthi = () => {
         ))}
       </div>
       <TalaShortInfo
-        showTalaList={toggleShowTalaList}
         selectedTalaId={selectedTalaId}
+        selectTala={onSelectTala}
       />
+      <SetHimmelaPattern />
       <div className="shruthi-controller-container">
         <div
           className={`shruthi-controller ${
@@ -132,14 +129,7 @@ const shruthi = () => {
             className="instrument-icon chende-icon"
           />
         </div>
-        {playCount}
       </div>
-      {showTalaList && (
-        <TalaListModal
-          toggleTalaListModal={toggleShowTalaList}
-          selectTala={onSelectTala}
-        />
-      )}
     </div>
   );
 };

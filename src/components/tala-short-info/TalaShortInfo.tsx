@@ -1,15 +1,17 @@
 import "./TalaShortInfo.scss";
 import { TalaInfo } from "../../constants/UiData";
 import { useEffect, useState } from "react";
+import TalaListModal from "../tala-list-modal/TalaListModal";
 
 interface TalaShortInfoProps {
   selectedTalaId: string;
-  showTalaList: () => void;
+  selectTala: (id: string) => void;
 }
 
 const TalaShortInfo = (props: TalaShortInfoProps) => {
-  const { selectedTalaId, showTalaList } = props;
+  const { selectedTalaId, selectTala } = props;
   const [talaInfo, setTalaInfo] = useState(TalaInfo[0]);
+  const [showTalaList, setShowTalaList] = useState(false);
 
   useEffect(() => {
     TalaInfo.forEach((data) => {
@@ -19,9 +21,13 @@ const TalaShortInfo = (props: TalaShortInfoProps) => {
     });
   }, [selectedTalaId]);
 
+  const toggleShowTalaList = () => {
+    setShowTalaList(!showTalaList);
+  };
+
   return (
     <div className="tala-short-info">
-      <div className="tala-selection" onClick={showTalaList}>
+      <div className="tala-selection" onClick={toggleShowTalaList}>
         <div className="tala-name">
           {talaInfo.talaName}
           <span className="tala-count"> ({talaInfo.talaCounts})</span>
@@ -53,6 +59,12 @@ const TalaShortInfo = (props: TalaShortInfoProps) => {
           )
         )}
       </div>
+      {showTalaList && (
+        <TalaListModal
+          toggleTalaListModal={toggleShowTalaList}
+          selectTala={selectTala}
+        />
+      )}
     </div>
   );
 };

@@ -1,0 +1,51 @@
+.set-himmela-pattern {
+  width: 100%;
+  padding-bottom: 1.2rem;
+
+  @media screen and (max-height: 700px) {
+    padding-bottom: 0.5rem;
+  }
+
+  .himmela-ctrl-btn-container,
+  .avarta-list-container {
+    display: flex;
+    padding: 2rem 1rem;
+    padding-bottom: 0;
+    padding-top: unset;
+
+    .himmela-ctrl-btn {
+      flex: 1;
+      display: flex;
+      background: rgba(207, 198, 198, 0.73);
+      align-items: center;
+      justify-content: center;
+      height: 2.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+
+      @media screen and (max-height: 700px) {
+        font-size: 0.8rem;
+        height: 1.6rem;
+      }
+    }
+
+    .disabled {
+      opacity: 0.6;
+      color: #4c4848;
+    }
+
+    .add-btn {
+      padding: 0 1rem;
+      flex: unset;
+      background: #444447;
+      font-size: 1.5rem;
+    }
+
+    .add-input-box {
+    }
+  }
+
+  .avarta-list-container {
+    margin: 1.8rem 0;
+  }
+}
