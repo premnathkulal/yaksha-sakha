@@ -1,8 +1,8 @@
 import "./SetHimmelaPattern.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import AvartaListModal from "../avarta-list-modal/avartaListModal";
 import { useState } from "react";
+import AvartaListModal from "../avarta-list-modal/AvartaListModal";
 
 interface AvartaShortInfoProps {
   selectedAvartaId: string;

@@ -198,3 +198,36 @@ export const TalaInfo = [
     talaName: "ತೈತಿತ್ತಿ ತಾಳ",
   },
 ];
+
+export const AvartaTypes = [
+  {
+    id: "avarta",
+    title: "ಅವರ್ತ",
+    isCountRequired: true,
+  },
+  {
+    id: "bidita",
+    title: "ಬಿಡಿತ",
+    isCountRequired: false,
+  },
+  {
+    id: "muktaya",
+    title: "ಮುಕ್ತಾಯ",
+    isCountRequired: false,
+  },
+  {
+    id: "chalu-1",
+    title: "ಚಾಲು (1)",
+    isCountRequired: false,
+  },
+  {
+    id: "chalu-2",
+    title: "ಚಾಲು (2)",
+    isCountRequired: false,
+  },
+  {
+    id: "chalu-2",
+    title: "ಚಾಲು (3)",
+    isCountRequired: false,
+  },
+];

@@ -31,5 +31,55 @@
         }
       }
     }
+
+    .cycle-count-selector {
+      color: #000000;
+      font-weight: 600;
+      border-bottom: 0.6px solid rgb(168, 165, 165);
+      width: 100%;
+
+      .title {
+        margin: 0;
+        padding: 0.8rem;
+        font-size: 1.5rem;
+      }
+
+      .cycle-count-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .cycle-count-ctrl {
+          font-size: 4rem;
+          opacity: 0.7;
+        }
+
+        .cycle-count {
+          font-size: 2.8rem;
+          padding: 0 1rem;
+          opacity: 0.7;
+          width: 4rem;
+        }
+      }
+
+      .cycle-count-modal-ctrl {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .btn {
+          font-size: 1.3rem;
+          padding: 0.5rem 1rem;
+          margin: 1rem 0.5rem;
+          background: rgb(168, 165, 165);
+          border-radius: 0.5rem;
+        }
+
+        .back-btn {
+          background: unset;
+          opacity: 0.7;
+        }
+      }
+    }
   }
 }
