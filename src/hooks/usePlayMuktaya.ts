@@ -8,8 +8,8 @@ const player = new Tone.Player({
 }).toDestination();
 
 const usePlayMuktaya = () => {
-  const [isPlaying, setIsPlaying] = useState<any>(false);
-  const [isMuktayaCompleted, setIsMuktayaCompleted] = useState<any>(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuktayaCompleted, setIsMuktayaCompleted] = useState(false);
 
   const handleMuktaya = (play: boolean) => {
     if (play) {

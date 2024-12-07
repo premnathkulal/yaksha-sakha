@@ -31,7 +31,7 @@ const Shruthi = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleAvarta, playCount } = usePlayHimmela();
+  const { handleAvarta } = usePlayHimmela();
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
