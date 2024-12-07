@@ -14,11 +14,10 @@ import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
 import SetHimmelaPattern from "../../components/set-himmela-pattern/SetHimmelaPattern";
 import { useDispatch } from "react-redux";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
-import TalaListModal from "../../components/tala-list-modal/TalaListModal";
 import useNotation from "../../hooks/useNotation";
 import usePlayHimmela from "../../hooks/usePlayHimmela";
 
-const shruthi = () => {
+const Shruthi = () => {
   // const selectedTanpuraType = useSelector<RootState>(
   //   (state) => state.selections.selectedTanpuraType
   // ) as string;
@@ -134,4 +133,4 @@ const shruthi = () => {
   );
 };
 
-export default shruthi;
+export default Shruthi;

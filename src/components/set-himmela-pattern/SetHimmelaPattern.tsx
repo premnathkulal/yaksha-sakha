@@ -4,13 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import AvartaListModal from "../avarta-list-modal/AvartaListModal";
 
-interface AvartaShortInfoProps {
-  selectedAvartaId: string;
-  selectAvarta: (id: string) => void;
-}
-
-const AvartaShortInfo = (props: AvartaShortInfoProps) => {
-  const { selectedAvartaId, selectAvarta } = props;
+const AvartaShortInfo = () => {
   const [showAvartaList, setShowAvartaList] = useState(false);
 
   const toggleShowAvartaList = () => {
@@ -45,7 +39,7 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
       {showAvartaList && (
         <AvartaListModal
           toggleAvartaListModal={toggleShowAvartaList}
-          selectAvarta={selectAvarta}
+          selectAvarta={() => {}}
         />
       )}
     </div>

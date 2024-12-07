@@ -12,7 +12,6 @@ interface ShruthiSelectorProps {
 }
 
 const ShruthiSelector = ({ selectFrequency }: ShruthiSelectorProps) => {
-  // eslint-disable-next-line
   const [musicNotation] = useState(MusicNotation);
   const [activeItem, setActiveItem] = useState(MusicNotation[4]);
   const [prevItem, setPrevItem] = useState(MusicNotation[3]);
