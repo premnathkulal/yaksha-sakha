@@ -48,4 +48,36 @@
   .avarta-list-container {
     margin: 1.8rem 0;
   }
+
+  .avarta-chits-container {
+    padding: 1rem;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+
+    .avarta-chits-list {
+      border: 2px solid black;
+      padding: 0.5rem;
+      padding-bottom: 1rem;
+      padding-right: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      max-height: 4.5rem;
+      overflow: scroll;
+
+      .avarta-chips {
+        background: rgba(106, 104, 104, 0.561);
+        margin-left: 0.5rem;
+        padding: 0rem 0.5rem;
+        margin-top: 0.5rem;
+        font-weight: 600;
+      }
+    }
+
+    .current-playing-avarta-info {
+      padding-top: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
 }

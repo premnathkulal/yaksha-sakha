@@ -226,7 +226,7 @@ export const AvartaTypes = [
     isCountRequired: false,
   },
   {
-    id: "chalu-2",
+    id: "chalu-3",
     title: "ಚಾಲು (3)",
     isCountRequired: false,
   },

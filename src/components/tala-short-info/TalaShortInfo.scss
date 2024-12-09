@@ -27,6 +27,7 @@
   .tala-selection {
     padding: 1rem;
     padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,8 +37,12 @@
       background: rgba(207, 198, 198, 0.473);
       width: fit-content;
       padding: 0.2rem 0.5rem;
-      border-radius: 4px;
       font-weight: 600;
+      flex: 1;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       @media screen and (max-height: 700px) {
         font-size: 0.8rem;

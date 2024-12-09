@@ -4,32 +4,62 @@ import { faCaretLeft } from "@fortawesome/free-solid-svg-icons/faCaretLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { SelectedTerms } from "../set-himmela-pattern/SetHimmelaPattern";
 
 interface AvartaListModalProps {
   toggleAvartaListModal: () => void;
-  selectAvarta: (id: string) => void;
+  selectAvarta: (data: SelectedTerms) => void;
+}
+
+interface AvartaTypes {
+  id: string;
+  title: string;
+  isCountRequired: boolean;
 }
 
 const AvartaListModal = (props: AvartaListModalProps) => {
   const [cycleCount, setCycleCount] = useState(2);
   const [showSetCycleOption, setShowSetCycleOption] = useState(false);
+  const [selectedAvarta, setSelectedAvarta] = useState<SelectedTerms>();
 
   const { toggleAvartaListModal, selectAvarta } = props;
 
-  const onSelectAvarta = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
+  const generateRandomId = () => {
+    // Generate a random ID using a combination of Date, Math.random, and crypto for extra randomness
+    const randomId =
+      Date.now().toString(36) + // Current timestamp in base36
+      Math.random().toString(36).substring(2, 15) + // Random number in base36
+      crypto.getRandomValues(new Uint32Array(1))[0].toString(36); // Strong random number
+
+    return randomId;
+  };
+
+  const onSelectAvarta = async (
+    e: React.MouseEvent<HTMLDivElement>,
+    data: AvartaTypes
+  ) => {
     e.stopPropagation();
-    selectAvarta(id);
-    if (id === "avarta") {
-      setShowSetCycleOption(true);
+    const userSelectedAvarta = {
+      id: generateRandomId(),
+      title: data.title,
+    };
+    if (data.id !== "avarta") {
+      selectAvarta(userSelectedAvarta);
+      toggleAvartaListModal();
       return;
     }
-    toggleAvartaListModal();
+    setSelectedAvarta(userSelectedAvarta);
+    setShowSetCycleOption(true);
   };
 
   const toggleShowSetCycleOption = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     setShowSetCycleOption(false);
-    // toggleAvartaListModal();
+    if (selectedAvarta) {
+      selectedAvarta.count = cycleCount;
+      selectAvarta(selectedAvarta);
+    }
+    toggleAvartaListModal();
   };
 
   const handleCycleCount = (
@@ -50,8 +80,9 @@ const AvartaListModal = (props: AvartaListModalProps) => {
         {!showSetCycleOption &&
           AvartaTypes.map((data) => (
             <div
+              key={data.id}
               className="tala-info"
-              onClick={(e) => onSelectAvarta(e, data.id)}
+              onClick={(e) => onSelectAvarta(e, data)}
             >
               <p className="tala-name">{data.title}</p>
             </div>
@@ -75,8 +106,13 @@ const AvartaListModal = (props: AvartaListModalProps) => {
               </div>
             </div>
             <div className="cycle-count-modal-ctrl">
-              <div className="btn">Select</div>
-              <div className="btn back-btn" onClick={toggleShowSetCycleOption}>
+              <div className="btn" onClick={toggleShowSetCycleOption}>
+                Select
+              </div>
+              <div
+                className="btn back-btn"
+                onClick={() => setShowSetCycleOption(false)}
+              >
                 Back
               </div>
             </div>

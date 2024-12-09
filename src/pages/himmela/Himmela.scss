@@ -1,4 +1,4 @@
-.shruthi {
+.himmela {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,49 +37,58 @@
     }
   }
 
-  .shruthi-cards {
+  .himmela-cards {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    padding: 1.2rem 0;
   }
 
-  .shruthi-selector {
+  .himmela-selector {
     padding: 0.8rem 0;
   }
 
-  .shruthi-controller-container {
+  .himmela-controller-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    padding: 1.5rem 0;
 
-    .shruthi-controller {
+    .himmela-controller {
       background: #444447;
       font-size: 2rem;
-      border-radius: 50%;
-      height: 4rem;
-      width: 4rem;
+      border-radius: 8px;
+      height: 3rem;
+      width: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      border: 1px solid #000;
 
       .instrument-icon {
         width: 2rem;
       }
 
-      .play {
-        transform: translateX(2px);
+      .tala-icon {
+        filter: brightness(0) invert(1);
+        transform: rotate(45deg);
+        padding-left: 0.3rem;
       }
+
+      .chende-icon {
+        transform: rotate(-30deg);
+      }
+    }
+
+    .selected {
+      background: #a59f9f;
     }
   }
 
   @media screen and (max-height: 700px) {
-    .shruthi-controller-container {
-      .shruthi-controller {
+    .himmela-controller-container {
+      .himmela-controller {
         height: 2rem;
         width: 2rem;
 

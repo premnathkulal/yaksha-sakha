@@ -4,7 +4,7 @@ import usePlayChendeMuktaya from "./usePlayMuktaya";
 import usePlayChende from "./usePlayAvarta";
 import { HimmelaTerms } from "../utils/enum";
 
-const maxAvarta = 2;
+const maxAvarta = 1;
 const playSteps = [
   HimmelaTerms.Avarta,
   HimmelaTerms.Bidita,

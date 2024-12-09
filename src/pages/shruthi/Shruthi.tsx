@@ -1,37 +1,24 @@
 import "./Shruthi.scss";
-// import CircleWave from "../../components/circle-wave/CircleWave";
+import CircleWave from "../../components/circle-wave/CircleWave";
 import ShruthiCard from "../../components/shruthi-card/ShruthiCard";
 import ShruthiSelector from "../../components/shruthi-selector/ShruthiSelector";
-import {
-  ChendeIcon,
-  TanpuraIcon,
-  // YakshaMan,
-  JagateIcon,
-} from "../../utils/assets";
+import { YakshaMan } from "../../utils/assets";
 import { TanpuraTypes } from "../../constants/UiData";
 import { useEffect, useState } from "react";
-import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
-import SetHimmelaPattern from "../../components/set-himmela-pattern/SetHimmelaPattern";
 import { useDispatch } from "react-redux";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
 import useNotation from "../../hooks/useNotation";
-import usePlayHimmela from "../../hooks/usePlayHimmela";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 const Shruthi = () => {
-  // const selectedTanpuraType = useSelector<RootState>(
-  //   (state) => state.selections.selectedTanpuraType
-  // ) as string;
   const dispatch = useDispatch();
 
   const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
   const [selectedFrequency, setSelectedFrequency] = useState(329.63);
   const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
-  const [talaSelected, setTalaSelected] = useState(false);
-  const [chendeSelected, setChendeSelected] = useState(false);
-  const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
-  const { handleAvarta } = usePlayHimmela();
 
   const onSelectTanpura = (key: string) => {
     setSelectedTanpura(key);
@@ -47,10 +34,6 @@ const Shruthi = () => {
     setIsTanpuraSelected(!isTanpuraSelected);
   };
 
-  const onSelectTala = (id: string) => {
-    setSelectedTalaId(id);
-  };
-
   useEffect(() => {
     handlePlayPause(isTanpuraSelected);
   }, [isTanpuraSelected]);
@@ -61,21 +44,12 @@ const Shruthi = () => {
     }
   }, [selectedFrequency]);
 
-  useEffect(() => {
-    // handleChendePlayPause(chendeSelected);
-    handleAvarta(chendeSelected, 2);
-  }, [chendeSelected]);
-
-  useEffect(() => {}, [talaSelected]);
-
   return (
     <div className="shruthi">
-      {/* <div className="player-animation">
-        {(isTanpuraSelected || chendeSelected || talaSelected) && (
-          <CircleWave />
-        )}
+      <div className="player-animation">
+        {isTanpuraSelected && <CircleWave />}
         <img src={YakshaMan} alt="img" className="player-placeholder" />
-      </div> */}
+      </div>
       <div className="shruthi-selector">
         <ShruthiSelector selectFrequency={onSelectFrequency} />
       </div>
@@ -90,43 +64,21 @@ const Shruthi = () => {
           />
         ))}
       </div>
-      <TalaShortInfo
-        selectedTalaId={selectedTalaId}
-        selectTala={onSelectTala}
-      />
-      <SetHimmelaPattern />
+
       <div className="shruthi-controller-container">
-        <div
-          className={`shruthi-controller ${
-            isTanpuraSelected ? "selected" : ""
-          }`}
-          onClick={() => handlePlayTanpura()}
-        >
-          <img
-            src={TanpuraIcon}
-            alt="icon"
-            className="instrument-icon tanpura-icon"
-          />
-        </div>
-        <div
-          className={`shruthi-controller ${talaSelected ? "selected" : ""}`}
-          onClick={() => setTalaSelected(!talaSelected)}
-        >
-          <img
-            src={JagateIcon}
-            alt="icon"
-            className="instrument-icon tala-icon"
-          />
-        </div>
-        <div
-          className={`shruthi-controller ${chendeSelected ? "selected" : ""}`}
-          onClick={() => setChendeSelected(!chendeSelected)}
-        >
-          <img
-            src={ChendeIcon}
-            alt="icon"
-            className="instrument-icon chende-icon"
-          />
+        <div className="shruthi-controller" onClick={() => handlePlayTanpura()}>
+          {isTanpuraSelected && (
+            <FontAwesomeIcon
+              icon={faPause}
+              className="instrument-icon tanpura-icon"
+            />
+          )}
+          {!isTanpuraSelected && (
+            <FontAwesomeIcon
+              icon={faPlay}
+              className="instrument-icon tanpura-icon play"
+            />
+          )}
         </div>
       </div>
     </div>
