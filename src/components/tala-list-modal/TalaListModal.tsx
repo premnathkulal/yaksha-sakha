@@ -19,7 +19,11 @@ const TalaListModal = (props: TalaListModalProps) => {
     <div className="tala-list-modal" onClick={toggleTalaListModal}>
       <div className="tala-list-container">
         {TalaInfo.map((data) => (
-          <div className="tala-info" onClick={(e) => onSelectTala(e, data.id)}>
+          <div
+            key={data.id}
+            className="tala-info"
+            onClick={(e) => onSelectTala(e, data.id)}
+          >
             <p className="tala-name">
               {data.talaName}
               <span className="tala-count">({data.talaCounts})</span>

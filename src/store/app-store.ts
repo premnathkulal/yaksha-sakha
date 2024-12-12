@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import selectionReducers from "./slices/selection-slice";
+import himmelaPatternReducers from "./slices/himmela-pattern";
 
 const appStore = configureStore({
   reducer: {
     selections: selectionReducers,
+    himmelaPattern: himmelaPatternReducers,
   },
 });
 

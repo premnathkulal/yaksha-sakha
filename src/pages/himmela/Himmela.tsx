@@ -11,11 +11,11 @@ const Himmela = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
   const [playInfinite, setPlayInfinite] = useState(true);
 
-  const { handleAvarta, handleInfiniteAvarta } = usePlayHimmela();
+  const { handlePlayAvarta, handleInfiniteAvarta } = usePlayHimmela();
 
   useEffect(() => {
     playInfinite
-      ? handleAvarta(chendeSelected, 2)
+      ? handlePlayAvarta(chendeSelected)
       : handleInfiniteAvarta(chendeSelected);
   }, [chendeSelected]);
 

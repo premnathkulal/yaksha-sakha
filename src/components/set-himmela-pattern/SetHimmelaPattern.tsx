@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import AvartaListModal from "../avarta-list-modal/AvartaListModal";
-
-export interface SelectedTerms {
-  id: string;
-  title: string;
-  count?: number;
-}
+import { useDispatch, useSelector } from "react-redux";
+import {
+  HimmelaPattern,
+  PlayingTerm,
+  setHimmelaPattern,
+} from "../../store/slices/himmela-pattern";
+import { RootState } from "../../store/app-store";
+import { HimmelaTerms } from "../../utils/enum";
 
 export interface AvartaShortInfoProps {
   playInfiniteLoop: () => void;
@@ -16,54 +18,25 @@ export interface AvartaShortInfoProps {
 
 const AvartaShortInfo = (props: AvartaShortInfoProps) => {
   const { playInfiniteLoop } = props;
+  const dispatch = useDispatch();
+
+  const himmelaPattern = useSelector<RootState>(
+    (state) => state.himmelaPattern.himmelaPattern
+  ) as HimmelaPattern[];
+
+  const playingInfo = useSelector<RootState>(
+    (state) => state.himmelaPattern.playingInformation
+  ) as PlayingTerm;
+
   const [showAvartaList, setShowAvartaList] = useState(false);
   const [playInfinite, setPlayInfinite] = useState(true);
-  const [selectedTerms, setSelectedTerms] = useState<SelectedTerms[]>([]);
-  // [
-  //   {
-  //     id: "random-1",
-  //     title: "Avarta",
-  //     count: "4",
-  //   },
-  //   {
-  //     id: "random-2",
-  //     title: "Bidita",
-  //   },
-  //   {
-  //     id: "random-3",
-  //     title: "Avarta",
-  //     count: "4",
-  //   },
-  //   {
-  //     id: "random-4",
-  //     title: "Bidita",
-  //   },
-  //   {
-  //     id: "random-3",
-  //     title: "Avarta",
-  //     count: "4",
-  //   },
-  //   {
-  //     id: "random-7",
-  //     title: "Bidita",
-  //   },
-  //   {
-  //     id: "random-8",
-  //     title: "Avarta",
-  //     count: "2",
-  //   },
-  //   {
-  //     id: "random-6",
-  //     title: "Muktaya",
-  //   },
-  // ];
 
   const toggleShowAvartaList = () => {
     setShowAvartaList(!showAvartaList);
   };
 
-  const handleSelectedTerms = (data: SelectedTerms) => {
-    setSelectedTerms([...selectedTerms, data]);
+  const handleSelectedTerms = (data: HimmelaPattern) => {
+    dispatch(setHimmelaPattern(data));
   };
 
   const handlePlayingType = () => {
@@ -73,14 +46,6 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
       return;
     }
   };
-
-  // useEffect(() => {
-  //   TalaInfo.forEach((data) => {
-  //     if (data.id === selectedTalaId) {
-  //       setTalaInfo(data);
-  //     }
-  //   });
-  // }, [selectedTalaId]);
 
   return (
     <div className="set-himmela-pattern">
@@ -110,9 +75,9 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
         </div>
       </div>
       <div className="avarta-chits-container">
-        {!!selectedTerms.length && (
+        {!!himmelaPattern.length && (
           <div className="avarta-chits-list">
-            {selectedTerms.map((data) => (
+            {himmelaPattern.map((data) => (
               <span className="avarta-chips" key={data.id}>
                 {data.title}
                 {data.count && <span className="count"> ({data.count})</span>}
@@ -120,9 +85,13 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
             ))}
           </div>
         )}
-        {!!selectedTerms.length && (
+        {!!himmelaPattern.length && (
           <div className="current-playing-avarta-info">
-            Avarta - <span className="cycle-count">4</span>
+            {playingInfo.term?.title}
+            {playingInfo.count > 0 &&
+              playingInfo.term?.type === HimmelaTerms.Avarta && (
+                <span className="cycle-count"> - {playingInfo.count}</span>
+              )}
           </div>
         )}
       </div>

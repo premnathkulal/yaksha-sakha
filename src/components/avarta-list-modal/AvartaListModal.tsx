@@ -4,11 +4,11 @@ import { faCaretLeft } from "@fortawesome/free-solid-svg-icons/faCaretLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { SelectedTerms } from "../set-himmela-pattern/SetHimmelaPattern";
+import { HimmelaPattern } from "../../store/slices/himmela-pattern";
 
 interface AvartaListModalProps {
   toggleAvartaListModal: () => void;
-  selectAvarta: (data: SelectedTerms) => void;
+  selectAvarta: (data: HimmelaPattern) => void;
 }
 
 interface AvartaTypes {
@@ -20,7 +20,7 @@ interface AvartaTypes {
 const AvartaListModal = (props: AvartaListModalProps) => {
   const [cycleCount, setCycleCount] = useState(2);
   const [showSetCycleOption, setShowSetCycleOption] = useState(false);
-  const [selectedAvarta, setSelectedAvarta] = useState<SelectedTerms>();
+  const [selectedAvarta, setSelectedAvarta] = useState<HimmelaPattern>();
 
   const { toggleAvartaListModal, selectAvarta } = props;
 
@@ -36,12 +36,13 @@ const AvartaListModal = (props: AvartaListModalProps) => {
 
   const onSelectAvarta = async (
     e: React.MouseEvent<HTMLDivElement>,
-    data: AvartaTypes
+    data: HimmelaPattern
   ) => {
     e.stopPropagation();
     const userSelectedAvarta = {
       id: generateRandomId(),
       title: data.title,
+      type: data.type,
     };
     if (data.id !== "avarta") {
       selectAvarta(userSelectedAvarta);

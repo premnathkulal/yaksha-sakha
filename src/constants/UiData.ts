@@ -1,3 +1,5 @@
+import { HimmelaTerms } from "../utils/enum";
+
 export const TanpuraTypes = [
   {
     key: "yaksha-low",
@@ -203,31 +205,37 @@ export const AvartaTypes = [
   {
     id: "avarta",
     title: "ಅವರ್ತ",
+    type: HimmelaTerms.Avarta,
     isCountRequired: true,
   },
   {
     id: "bidita",
     title: "ಬಿಡಿತ",
+    type: HimmelaTerms.Bidita,
     isCountRequired: false,
   },
   {
     id: "muktaya",
     title: "ಮುಕ್ತಾಯ",
+    type: HimmelaTerms.Muktaya,
     isCountRequired: false,
   },
   {
     id: "chalu-1",
     title: "ಚಾಲು (1)",
+    type: HimmelaTerms.Chalu,
     isCountRequired: false,
   },
   {
     id: "chalu-2",
     title: "ಚಾಲು (2)",
+    type: HimmelaTerms.Chalu,
     isCountRequired: false,
   },
   {
     id: "chalu-3",
     title: "ಚಾಲು (3)",
+    type: HimmelaTerms.Chalu,
     isCountRequired: false,
   },
 ];
