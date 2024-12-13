@@ -1,4 +1,4 @@
-import "./SetHimmelaPattern.scss";
+import "./HimmelaPlayer.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -11,6 +11,8 @@ import {
 } from "../../store/slices/himmela-pattern";
 import { RootState } from "../../store/app-store";
 import { HimmelaTerms } from "../../utils/enum";
+import usePlayHimmela from "../../hooks/usePlayHimmela";
+import { ChendeIcon, JagateIcon } from "../../utils/assets";
 
 export interface AvartaShortInfoProps {
   playInfiniteLoop: () => void;
@@ -19,6 +21,7 @@ export interface AvartaShortInfoProps {
 const AvartaShortInfo = (props: AvartaShortInfoProps) => {
   const { playInfiniteLoop } = props;
   const dispatch = useDispatch();
+  const { handlePlayAvarta, handleInfiniteAvarta } = usePlayHimmela();
 
   const himmelaPattern = useSelector<RootState>(
     (state) => state.himmelaPattern.himmelaPattern
@@ -30,6 +33,7 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
 
   const [showAvartaList, setShowAvartaList] = useState(false);
   const [playInfinite, setPlayInfinite] = useState(true);
+  const [chendeSelected, setChendeSelected] = useState(false);
 
   const toggleShowAvartaList = () => {
     setShowAvartaList(!showAvartaList);
@@ -39,26 +43,25 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
     dispatch(setHimmelaPattern(data));
   };
 
-  const handlePlayingType = () => {
-    setPlayInfinite(!playInfinite);
-    if (playInfinite) {
-      playInfiniteLoop();
-      return;
-    }
+  const handlePlayingType = (chendeSelected: boolean) => {
+    setChendeSelected(chendeSelected);
+    playInfinite
+      ? handleInfiniteAvarta(chendeSelected)
+      : handlePlayAvarta(chendeSelected);
   };
 
   return (
-    <div className="set-himmela-pattern">
+    <div className="himmela-player">
       <div className="himmela-ctrl-btn-container">
         <div
           className={`himmela-ctrl-btn ${!playInfinite ? "disabled" : ""}`}
-          onClick={handlePlayingType}
+          onClick={() => !playInfinite && setPlayInfinite(!playInfinite)}
         >
           Infinite Avarta
         </div>
         <div
           className={`himmela-ctrl-btn ${playInfinite ? "disabled" : ""}`}
-          onClick={handlePlayingType}
+          onClick={() => playInfinite && setPlayInfinite(!playInfinite)}
         >
           Set Avarta Manually
         </div>
@@ -94,6 +97,38 @@ const AvartaShortInfo = (props: AvartaShortInfoProps) => {
               )}
           </div>
         )}
+      </div>
+      <div className="himmela-controller-container">
+        {/* <div
+          className={`himmela-controller ${talaSelected ? "selected" : ""}`}
+          onClick={() => {}}
+        >
+          <img
+            src={JagateIcon}
+            alt="icon"
+            className="instrument-icon tala-icon"
+          />
+        </div>
+        <div
+          className={`himmela-controller ${talaSelected ? "selected" : ""}`}
+          onClick={() => {}}
+        >
+          <img
+            src={JagateIcon}
+            alt="icon"
+            className="instrument-icon tala-icon"
+          />
+        </div> */}
+        <div
+          className={`himmela-controller ${chendeSelected ? "selected" : ""}`}
+          onClick={() => handlePlayingType(!chendeSelected)}
+        >
+          <img
+            src={ChendeIcon}
+            alt="icon"
+            className="instrument-icon chende-icon"
+          />
+        </div>
       </div>
       {showAvartaList && (
         <AvartaListModal
