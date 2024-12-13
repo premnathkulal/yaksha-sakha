@@ -12,14 +12,12 @@ import {
 import { RootState } from "../../store/app-store";
 import { HimmelaTerms } from "../../utils/enum";
 import usePlayHimmela from "../../hooks/usePlayHimmela";
-import { ChendeIcon, JagateIcon } from "../../utils/assets";
+import {
+  ChendeIcon,
+  // JagateIcon
+} from "../../utils/assets";
 
-export interface AvartaShortInfoProps {
-  playInfiniteLoop: () => void;
-}
-
-const AvartaShortInfo = (props: AvartaShortInfoProps) => {
-  const { playInfiniteLoop } = props;
+const AvartaShortInfo = () => {
   const dispatch = useDispatch();
   const { handlePlayAvarta, handleInfiniteAvarta } = usePlayHimmela();
 

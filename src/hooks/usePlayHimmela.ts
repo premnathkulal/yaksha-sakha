@@ -30,11 +30,11 @@ const usePlayHimmela = () => {
     if (himmelaPlayPattern.length) {
       if (playCount > maxAvarta) {
         if (himmelaPlayPattern[0].type === HimmelaTerms.Bidita) {
-          handleBidita(true);
+          handlePlayPattern(true);
           setHimmelaPlayPattern(himmelaPlayPattern.slice(1));
           setPlayingIndex(playingIndex + 1);
         } else if (himmelaPlayPattern[0].type === HimmelaTerms.Muktaya) {
-          handleMuktaya(true);
+          handlePlayPattern(true);
           setHimmelaPlayPattern(himmelaPlayPattern.slice(1));
           setPlayingIndex(playingIndex + 1);
         }
@@ -49,7 +49,8 @@ const usePlayHimmela = () => {
         term: himmelaPattern[playingIndex],
       })
     );
-  }, [playCount, playingIndex]);
+    console.log("Sansa", himmelaPlayPattern);
+  }, [playCount, playingIndex, himmelaPlayPattern]);
 
   useEffect(() => {
     if (himmelaPlayPattern.length) {
@@ -58,19 +59,42 @@ const usePlayHimmela = () => {
         himmelaPlayPattern[0].type === HimmelaTerms.Avarta
       ) {
         setMaxAvarta(himmelaPlayPattern[0].count ?? 0);
-        handleAvarta(true, himmelaPlayPattern[0].count ?? 0);
+        handlePlayPattern(true);
         setHimmelaPlayPattern(himmelaPlayPattern.slice(1));
         setPlayingIndex(playingIndex + 1);
       }
+    } else {
+      handlePlayPattern(false);
     }
   }, [isBiditaCompleted, isMuktayaCompleted]);
 
+  const handlePlayPattern = (isPlaying: boolean) => {
+    let pattern = !himmelaPlayPattern.length
+      ? himmelaPattern[0]
+      : himmelaPlayPattern[0];
+
+    if (!isPlaying) {
+      pattern = himmelaPattern[himmelaPattern.length - 1];
+    }
+
+    switch (pattern?.type) {
+      case HimmelaTerms.Avarta:
+        handleAvarta(isPlaying, pattern.count ?? 0);
+        return;
+      case HimmelaTerms.Bidita:
+        handleBidita(isPlaying);
+        return;
+      case HimmelaTerms.Muktaya:
+        handleMuktaya(isPlaying);
+        return;
+    }
+  };
+
   const handlePlayAvarta = (isPlaying: boolean) => {
     if (himmelaPattern.length) {
-      handleAvarta(isPlaying, himmelaPattern[0].count ?? 0);
+      handlePlayPattern(isPlaying);
       setMaxAvarta(himmelaPattern[0].count ?? 0);
       setHimmelaPlayPattern(himmelaPattern.slice(1));
-      console.log(himmelaPattern);
     }
   };
 

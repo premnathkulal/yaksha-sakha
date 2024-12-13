@@ -5,14 +5,9 @@ import SetHimmelaPattern from "../../components/himmela-player/HimmelaPlayer";
 
 const Himmela = () => {
   const [selectedTalaId, setSelectedTalaId] = useState("tala-eka");
-  const [playInfinite, setPlayInfinite] = useState(true);
 
   const onSelectTala = (id: string) => {
     setSelectedTalaId(id);
-  };
-
-  const playInfiniteLoop = () => {
-    setPlayInfinite(!playInfinite);
   };
 
   return (
@@ -21,7 +16,7 @@ const Himmela = () => {
         selectedTalaId={selectedTalaId}
         selectTala={onSelectTala}
       />
-      <SetHimmelaPattern playInfiniteLoop={playInfiniteLoop} />
+      <SetHimmelaPattern />
     </div>
   );
 };
