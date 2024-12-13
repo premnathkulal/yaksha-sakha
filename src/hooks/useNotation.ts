@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as Tone from "tone";
-import { setIsPlayingTanpura } from "../store/slices/play-control";
 import { RootState } from "../store/app-store";
 
 export interface MusicNotation {
