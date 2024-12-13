@@ -1,14 +1,14 @@
-import "./TalaShortInfo.scss";
+import "./SelectTala.scss";
 import { TalaInfo } from "../../constants/UiData";
 import { useEffect, useState } from "react";
 import TalaListModal from "../tala-list-modal/TalaListModal";
 
-interface TalaShortInfoProps {
+interface SelectTalaProps {
   selectedTalaId: string;
   selectTala: (id: string) => void;
 }
 
-const TalaShortInfo = (props: TalaShortInfoProps) => {
+const SelectTala = (props: SelectTalaProps) => {
   const { selectedTalaId, selectTala } = props;
   const [talaInfo, setTalaInfo] = useState(TalaInfo[0]);
   const [showTalaList, setShowTalaList] = useState(false);
@@ -26,7 +26,7 @@ const TalaShortInfo = (props: TalaShortInfoProps) => {
   };
 
   return (
-    <div className="tala-short-info">
+    <div className="select-tala">
       <div className="tala-selection" onClick={toggleShowTalaList}>
         <div className="tala-name">
           {talaInfo.talaName}
@@ -69,4 +69,4 @@ const TalaShortInfo = (props: TalaShortInfoProps) => {
   );
 };
 
-export default TalaShortInfo;
+export default SelectTala;

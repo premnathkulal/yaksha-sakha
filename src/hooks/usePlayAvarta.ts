@@ -6,7 +6,17 @@ let player = new Tone.Player({
   url: Ektal,
   loop: true,
   autostart: false,
+  // playbackRate: 1.5,
 }).toDestination();
+
+// soundTouch.tempo = 1.5; // 1.5x speed
+
+// const pitchShift = new Tone.PitchShift({
+//   pitch: 0, // Pitch shift in semitones (e.g., +5 semitones)
+// });
+
+// player.connect(pitchShift).toDestination();
+// player.chain(pitchShift, Tone.Destination);
 
 const usePlayAvarta = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -22,6 +32,7 @@ const usePlayAvarta = () => {
   };
 
   const handleInfiniteAvartaPlay = () => {
+    // player.connect(pitchShift).toDestination();
     player.start();
     setIsPlaying(true);
   };

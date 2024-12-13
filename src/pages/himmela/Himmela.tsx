@@ -1,7 +1,7 @@
 import "./Himmela.scss";
 import { useEffect, useState } from "react";
 import { ChendeIcon, JagateIcon } from "../../utils/assets";
-import TalaShortInfo from "../../components/tala-short-info/TalaShortInfo";
+import TalaShortInfo from "../../components/select-tala/SelectTala";
 import SetHimmelaPattern from "../../components/set-himmela-pattern/SetHimmelaPattern";
 import usePlayHimmela from "../../hooks/usePlayHimmela";
 
@@ -49,7 +49,7 @@ const Himmela = () => {
         </div>
         <div
           className={`himmela-controller ${talaSelected ? "selected" : ""}`}
-          onClick={() => setTalaSelected(!talaSelected)}
+          onClick={() => {}}
         >
           <img
             src={JagateIcon}
