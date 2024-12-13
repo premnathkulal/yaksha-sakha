@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import selectionReducers from "./slices/selection-slice";
 import himmelaPatternReducers from "./slices/himmela-pattern";
+import playControlReducer from "./slices/play-control";
 
 const appStore = configureStore({
   reducer: {
     selections: selectionReducers,
     himmelaPattern: himmelaPatternReducers,
+    playControl: playControlReducer,
   },
 });
 

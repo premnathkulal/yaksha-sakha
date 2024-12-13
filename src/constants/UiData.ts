@@ -21,13 +21,22 @@ export const TanpuraTypes = [
 
 export const MusicNotation = [
   {
+    id: "x",
+    indian: "x",
+    western: "x",
+    kannada: "x",
+    kannadaNotation: "x",
+    fullIndianTitle: "x",
+    frequency: "x",
+  },
+  {
     id: "c",
     indian: "Sa",
     western: "C",
     kannada: "ಸ",
     kannadaNotation: "ಬಿಳಿ-1",
     fullIndianTitle: "Shadja",
-    frequency: 261.63,
+    frequency: "261.63",
   },
   {
     id: "c#",
@@ -36,7 +45,7 @@ export const MusicNotation = [
     kannada: "ರಿ",
     kannadaNotation: "ಕಪ್ಪು-1",
     fullIndianTitle: "Rishabha",
-    frequency: 277.18,
+    frequency: "277.18",
   },
   {
     id: "d",
@@ -45,7 +54,7 @@ export const MusicNotation = [
     kannada: "ರಿ",
     kannadaNotation: "ಬಿಳಿ-2",
     fullIndianTitle: "Rishabha",
-    frequency: 293.66,
+    frequency: "293.66",
   },
   {
     id: "d#",
@@ -54,7 +63,7 @@ export const MusicNotation = [
     kannada: "ಗ",
     kannadaNotation: "ಕಪ್ಪು-2",
     fullIndianTitle: "Gandhara",
-    frequency: 311.13,
+    frequency: "311.13",
   },
   {
     id: "e",
@@ -63,7 +72,7 @@ export const MusicNotation = [
     kannada: "ಗ",
     kannadaNotation: "ಬಿಳಿ-3",
     fullIndianTitle: "Gandhara",
-    frequency: 329.63,
+    frequency: "329.63",
   },
   {
     id: "f",
@@ -72,7 +81,7 @@ export const MusicNotation = [
     kannada: "ಮ",
     kannadaNotation: "ಬಿಳಿ-4",
     fullIndianTitle: "Madhyama",
-    frequency: 349.23,
+    frequency: "349.23",
   },
   {
     id: "f#",
@@ -81,7 +90,7 @@ export const MusicNotation = [
     kannada: "ಮ",
     kannadaNotation: "ಕಪ್ಪು-3",
     fullIndianTitle: "Madhyama",
-    frequency: 369.99,
+    frequency: "369.99",
   },
   {
     id: "g",
@@ -90,7 +99,7 @@ export const MusicNotation = [
     kannada: "ಪ",
     kannadaNotation: "ಬಿಳಿ-5",
     fullIndianTitle: "Panchama",
-    frequency: 392.0,
+    frequency: "392.0,",
   },
   {
     id: "g#",
@@ -99,7 +108,7 @@ export const MusicNotation = [
     kannada: "ದ",
     kannadaNotation: "ಕಪ್ಪು-4",
     fullIndianTitle: "Dhaivata",
-    frequency: 415.3,
+    frequency: "415.3,",
   },
   {
     id: "a",
@@ -108,7 +117,7 @@ export const MusicNotation = [
     kannada: "ದ",
     kannadaNotation: "ಬಿಳಿ-6",
     fullIndianTitle: "Dhaivata",
-    frequency: 440.0,
+    frequency: "440.0,",
   },
   {
     id: "a#",
@@ -117,7 +126,7 @@ export const MusicNotation = [
     kannada: "ನಿ",
     kannadaNotation: "ಕಪ್ಪು-5",
     fullIndianTitle: "Nishada",
-    frequency: 466.16,
+    frequency: "466.16",
   },
   {
     id: "b",
@@ -126,7 +135,7 @@ export const MusicNotation = [
     kannada: "ನಿ",
     kannadaNotation: "ಬಿಳಿ-7",
     fullIndianTitle: "Nishada",
-    frequency: 493.88,
+    frequency: "493.88",
   },
 ];
 

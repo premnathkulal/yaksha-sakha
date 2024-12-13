@@ -1,8 +1,21 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as Tone from "tone";
+import { setIsPlayingTanpura } from "../store/slices/play-control";
+import { RootState } from "../store/app-store";
+
+export interface MusicNotation {
+  id: string;
+  indian: string;
+  western: string;
+  kannada: string;
+  kannadaNotation: string;
+  fullIndianTitle: string;
+  frequency: string;
+}
 
 const synth = new Tone.PolySynth(Tone.Synth, {
-  volume: -34,
+  volume: -28,
   oscillator: {
     type: "sawtooth15", // Sawtooth for harmonium-like timbre
   },
@@ -27,31 +40,44 @@ const filter = new Tone.Filter({
 synth.connect(filter);
 
 const useNotation = () => {
-  const [isPlaying, setIsPlaying] = useState<any>(false);
+  const isPlayingTanpura = useSelector<RootState>(
+    (state) => state.playControl.isPlayingTanpura
+  );
 
-  const handlePlayPause = (play: boolean) => {
-    if (play) {
+  const selectedNotationInfo = useSelector<RootState>(
+    (state) => state.selections.selectedPitchInfo
+  ) as MusicNotation;
+
+  const handlePlayPause = () => {
+    if (!isPlayingTanpura) {
       handlePlay();
-    } else if (isPlaying) {
+    } else if (isPlayingTanpura) {
       handlePause();
     }
   };
 
-  const handlePlay = (newPitchFrequency = 329.63) => {
-    synth.triggerAttackRelease(newPitchFrequency, "0n");
-    setIsPlaying(true);
+  const handlePlay = (musicNotation?: MusicNotation) => {
+    synth.triggerAttackRelease(
+      musicNotation?.frequency ?? selectedNotationInfo.frequency,
+      "0n"
+    );
   };
 
   const handlePause = () => {
     synth.releaseAll();
-    setIsPlaying(false);
   };
 
-  const onSelectNewNote = (newPitchFrequency: number) => {
-    handlePause();
-    setTimeout(() => {
-      handlePlay(newPitchFrequency);
-    }, 0);
+  const onSelectNewNote = (musicNotation: MusicNotation) => {
+    if (
+      isPlayingTanpura &&
+      musicNotation.id !== selectedNotationInfo.id &&
+      musicNotation.id !== "x"
+    ) {
+      handlePause();
+      setTimeout(() => {
+        handlePlay(musicNotation);
+      }, 0);
+    }
   };
 
   return { handlePlayPause, onSelectNewNote };

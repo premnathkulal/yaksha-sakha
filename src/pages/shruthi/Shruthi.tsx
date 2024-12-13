@@ -4,50 +4,46 @@ import ShruthiCard from "../../components/shruthi-card/ShruthiCard";
 import ShruthiSelector from "../../components/shruthi-selector/ShruthiSelector";
 import { YakshaMan } from "../../utils/assets";
 import { TanpuraTypes } from "../../constants/UiData";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectPitch, selectTanpura } from "../../store/slices/selection-slice";
-import useNotation from "../../hooks/useNotation";
+import useNotation, { MusicNotation } from "../../hooks/useNotation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { setIsPlayingTanpura } from "../../store/slices/play-control";
+import { RootState } from "../../store/app-store";
 
 const Shruthi = () => {
   const dispatch = useDispatch();
+  const isPlayingTanpura =
+    useSelector<RootState>((state) => state.playControl.isPlayingTanpura) ??
+    false;
 
-  const [selectedTanpura, setSelectedTanpura] = useState(TanpuraTypes[0].key);
-  const [selectedFrequency, setSelectedFrequency] = useState(329.63);
-  const [isTanpuraSelected, setIsTanpuraSelected] = useState(false);
+  const [selectTanpuraType, setSelectTanpuraType] = useState(
+    TanpuraTypes[0].key
+  );
 
   const { handlePlayPause, onSelectNewNote } = useNotation();
 
   const onSelectTanpura = (key: string) => {
-    setSelectedTanpura(key);
+    setSelectTanpuraType(key);
     dispatch(selectTanpura(key));
   };
 
-  const onSelectFrequency = (pitch: number) => {
-    setSelectedFrequency(pitch);
-    dispatch(selectPitch(pitch));
+  const onSelectFrequency = (musicNotation: MusicNotation) => {
+    dispatch(selectPitch(musicNotation));
+    onSelectNewNote(musicNotation);
   };
 
   const handlePlayTanpura = () => {
-    setIsTanpuraSelected(!isTanpuraSelected);
+    dispatch(setIsPlayingTanpura(!isPlayingTanpura));
+    handlePlayPause();
   };
-
-  useEffect(() => {
-    handlePlayPause(isTanpuraSelected);
-  }, [isTanpuraSelected]);
-
-  useEffect(() => {
-    if (isTanpuraSelected) {
-      onSelectNewNote(selectedFrequency);
-    }
-  }, [selectedFrequency]);
 
   return (
     <div className="shruthi">
       <div className="player-animation">
-        {isTanpuraSelected && <CircleWave />}
+        {isPlayingTanpura && <CircleWave />}
         <img src={YakshaMan} alt="img" className="player-placeholder" />
       </div>
       <div className="shruthi-selector">
@@ -59,7 +55,7 @@ const Shruthi = () => {
             key={data.key}
             tanpuraKey={data.key}
             title={data.title}
-            isSelected={selectedTanpura === data.key}
+            isSelected={selectTanpuraType === data.key}
             selectTanpura={() => onSelectTanpura(data.key)}
           />
         ))}
@@ -67,13 +63,13 @@ const Shruthi = () => {
 
       <div className="shruthi-controller-container">
         <div className="shruthi-controller" onClick={() => handlePlayTanpura()}>
-          {isTanpuraSelected && (
+          {isPlayingTanpura && (
             <FontAwesomeIcon
               icon={faPause}
               className="instrument-icon tanpura-icon"
             />
           )}
-          {!isTanpuraSelected && (
+          {!isPlayingTanpura && (
             <FontAwesomeIcon
               icon={faPlay}
               className="instrument-icon tanpura-icon play"

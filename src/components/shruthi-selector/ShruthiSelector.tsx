@@ -6,16 +6,24 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { MusicNotation as MusicNotationInfo } from "../../hooks/useNotation";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app-store";
 
 interface ShruthiSelectorProps {
-  selectFrequency: (pitch: number) => void;
+  selectFrequency: (musicNotation: MusicNotationInfo) => void;
 }
 
 const ShruthiSelector = ({ selectFrequency }: ShruthiSelectorProps) => {
-  const [musicNotation] = useState(MusicNotation);
-  const [activeItem, setActiveItem] = useState(MusicNotation[4]);
-  const [prevItem, setPrevItem] = useState(MusicNotation[3]);
-  const [nextItem, setNextItem] = useState(MusicNotation[5]);
+  const selectedNotationInfo = useSelector<RootState>(
+    (state) => state.selections.selectedPitchInfo
+  ) as MusicNotationInfo;
+
+  const [activeItem, setActiveItem] = useState<MusicNotationInfo>(
+    MusicNotation[0]
+  );
+  const [prevItem, setPrevItem] = useState(MusicNotation[0]);
+  const [nextItem, setNextItem] = useState(MusicNotation[0]);
   const [reachedEnd, setReachedEnd] = useState(false);
   const [reachedStart, setReachedStart] = useState(false);
   const [clickedLeft, setClickedLeft] = useState(false);
@@ -24,61 +32,61 @@ const ShruthiSelector = ({ selectFrequency }: ShruthiSelectorProps) => {
   const handleLeftPress = () => {
     setFadeAnimation(true);
 
-    let currentIndex = musicNotation.findIndex(
+    let currentIndex = MusicNotation.findIndex(
       (item) => item.id === activeItem.id
     );
     setReachedStart(false);
     setClickedLeft(true);
 
     const prevIndex = currentIndex;
-    if (prevIndex + 2 > musicNotation.length - 1) {
-      const prevItem = musicNotation[prevIndex];
+    if (prevIndex + 2 > MusicNotation.length - 1) {
+      const prevItem = MusicNotation[prevIndex];
       setPrevItem(prevItem);
 
-      const currentItem = musicNotation[prevIndex + 1];
+      const currentItem = MusicNotation[prevIndex + 1];
       setActiveItem(currentItem);
 
       setReachedEnd(true);
       return;
     }
 
-    const prevItem = musicNotation[prevIndex];
+    const prevItem = MusicNotation[prevIndex];
     setPrevItem(prevItem);
 
-    const currentItem = musicNotation[prevIndex + 1];
+    const currentItem = MusicNotation[prevIndex + 1];
     setActiveItem(currentItem);
 
-    const NextItem = musicNotation[prevIndex + 2];
+    const NextItem = MusicNotation[prevIndex + 2];
     setNextItem(NextItem);
   };
 
   const handleRightPress = () => {
     setFadeAnimation(true);
 
-    const currentIndex = musicNotation.findIndex(
+    const currentIndex = MusicNotation.findIndex(
       (item) => item.id === activeItem.id
     );
     setReachedEnd(false);
     setClickedLeft(false);
 
     const nextIndex = currentIndex;
-    if (nextIndex - 2 < 0) {
-      const nextItem = musicNotation[nextIndex];
+    if (nextIndex - 2 < 1) {
+      const nextItem = MusicNotation[nextIndex];
       setNextItem(nextItem);
 
-      const currentItem = musicNotation[nextIndex - 1];
+      const currentItem = MusicNotation[nextIndex - 1];
       setActiveItem(currentItem);
 
       setReachedStart(true);
       return;
     }
-    const nextItem = musicNotation[nextIndex];
+    const nextItem = MusicNotation[nextIndex];
     setNextItem(nextItem);
 
-    const currentItem = musicNotation[nextIndex - 1];
+    const currentItem = MusicNotation[nextIndex - 1];
     setActiveItem(currentItem);
 
-    const prevItem = musicNotation[nextIndex - 2];
+    const prevItem = MusicNotation[nextIndex - 2];
     setPrevItem(prevItem);
   };
 
@@ -88,8 +96,24 @@ const ShruthiSelector = ({ selectFrequency }: ShruthiSelectorProps) => {
   };
 
   useEffect(() => {
-    selectFrequency(activeItem.frequency);
+    if (activeItem.id !== "x") selectFrequency(activeItem);
   }, [activeItem]);
+
+  useEffect(() => {
+    const currentIndex = MusicNotation.findIndex(
+      (item) => item.id === selectedNotationInfo.id
+    );
+
+    setActiveItem(MusicNotation[currentIndex]);
+
+    currentIndex + 1 < MusicNotation.length - 1
+      ? setNextItem(MusicNotation[currentIndex + 1])
+      : setReachedEnd(true);
+
+    currentIndex - 1 >= 1
+      ? setPrevItem(MusicNotation[currentIndex - 1])
+      : setReachedStart(true);
+  }, []);
 
   return (
     <div className="shruthi-selector">

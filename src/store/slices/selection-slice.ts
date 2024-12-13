@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { MusicNotation } from "../../constants/UiData";
 
 const selectionSlice = createSlice({
   name: "selections",
   initialState: {
     selectedTanpuraType: "",
-    selectedPitch: "",
+    selectedPitchInfo: MusicNotation[5],
     selectedInstruments: {
       tanpuraSelected: false,
       talaSelected: false,
@@ -16,7 +17,7 @@ const selectionSlice = createSlice({
       state.selectedTanpuraType = action.payload;
     },
     selectPitch: (state, action) => {
-      state.selectedPitch = action.payload;
+      state.selectedPitchInfo = action.payload;
     },
     selectInstrument: (state, action) => {
       state.selectedInstruments = action.payload;
