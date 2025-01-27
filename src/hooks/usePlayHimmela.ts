@@ -21,6 +21,7 @@ const usePlayHimmela = () => {
   const [himmelaPlayPattern, setHimmelaPlayPattern] = useState<
     HimmelaPattern[]
   >([]);
+  const [isHimmelaPlaying, setIsHimmelaPlaying] = useState(false);
 
   const { handleBidita, isBiditaCompleted } = usePlayTala();
   const { handleMuktaya, isMuktayaCompleted } = usePlayChendeMuktaya();
@@ -49,7 +50,6 @@ const usePlayHimmela = () => {
         term: himmelaPattern[playingIndex],
       })
     );
-    console.log("Sansa", himmelaPlayPattern);
   }, [playCount, playingIndex, himmelaPlayPattern]);
 
   useEffect(() => {
@@ -65,6 +65,7 @@ const usePlayHimmela = () => {
       }
     } else {
       handlePlayPattern(false);
+      setIsHimmelaPlaying(false);
     }
   }, [isBiditaCompleted, isMuktayaCompleted]);
 
@@ -95,12 +96,15 @@ const usePlayHimmela = () => {
       handlePlayPattern(isPlaying);
       setMaxAvarta(himmelaPattern[0].count ?? 0);
       setHimmelaPlayPattern(himmelaPattern.slice(1));
+      setIsHimmelaPlaying(true);
     }
+    if (!isPlaying) setIsHimmelaPlaying(false);
   };
 
   return {
     handleInfiniteAvarta,
     handlePlayAvarta,
+    isHimmelaPlaying,
     playingPatternInfo: {
       playCount,
       term: himmelaPlayPattern[0],

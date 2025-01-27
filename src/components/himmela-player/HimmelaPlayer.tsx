@@ -1,6 +1,6 @@
 import "./HimmelaPlayer.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import AvartaListModal from "../avarta-list-modal/AvartaListModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,8 @@ import {
 
 const AvartaShortInfo = () => {
   const dispatch = useDispatch();
-  const { handlePlayAvarta, handleInfiniteAvarta } = usePlayHimmela();
+  const { handlePlayAvarta, handleInfiniteAvarta, isHimmelaPlaying } =
+    usePlayHimmela();
 
   const himmelaPattern = useSelector<RootState>(
     (state) => state.himmelaPattern.himmelaPattern
@@ -64,7 +65,11 @@ const AvartaShortInfo = () => {
           Set Avarta Manually
         </div>
       </div>
-      <div className="avarta-list-container">
+      <div
+        className={`avarta-list-container ${
+          playInfinite ? "select-disabled" : ""
+        }`}
+      >
         <div
           className="himmela-ctrl-btn add-input-box"
           onClick={toggleShowAvartaList}
@@ -76,17 +81,22 @@ const AvartaShortInfo = () => {
         </div>
       </div>
       <div className="avarta-chits-container">
-        {!!himmelaPattern.length && (
+        {!!himmelaPattern.length && !playInfinite && (
           <div className="avarta-chits-list">
             {himmelaPattern.map((data) => (
-              <span className="avarta-chips" key={data.id}>
-                {data.title}
-                {data.count && <span className="count"> ({data.count})</span>}
-              </span>
+              <div className="avarta-chips" key={data.id}>
+                <span className="avarta-chips-name">
+                  {data.title}
+                  {data.count && <span className="count"> ({data.count})</span>}
+                </span>
+                <div className="remove-option">
+                  <FontAwesomeIcon icon={faTimes} color="#ff4000" />
+                </div>
+              </div>
             ))}
           </div>
         )}
-        {!!himmelaPattern.length && (
+        {!!himmelaPattern.length && !playInfinite && (
           <div className="current-playing-avarta-info">
             {playingInfo.term?.title}
             {playingInfo.count > 0 &&
@@ -118,7 +128,7 @@ const AvartaShortInfo = () => {
           />
         </div> */}
         <div
-          className={`himmela-controller ${chendeSelected ? "selected" : ""}`}
+          className={`himmela-controller ${isHimmelaPlaying ? "selected" : ""}`}
           onClick={() => handlePlayingType(!chendeSelected)}
         >
           <img
