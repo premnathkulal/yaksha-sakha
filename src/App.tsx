@@ -5,6 +5,7 @@ import FooterNavigation from "./components/footer-navigation/FooterNavigation";
 function App() {
   return (
     <div className="app">
+      Test
       <Outlet />
       <FooterNavigation />
     </div>
